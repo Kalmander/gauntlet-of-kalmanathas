@@ -63,7 +63,7 @@
 	// Nexus row-1 accents
 	#define Nex       0x5ad1ff
 	#define ColNexusOverlayRow1 0xffb347
-	#define Tabber    0x1ec912
+	#define ColTabOverlay    0x1ec912
 	
 	// Num row-2 accents (distinct from Nexus palette)
 	/* #define Num     0xff4da6 */
@@ -384,16 +384,16 @@
 			layer-id = <NEXUS_LOCK>;
 		};
 
-		Tabber {
+		TabOverlay {
 			bindings = <
 			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___                                                           &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
 			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___   &ug ___                                                 &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
 			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___   &ug ___                                                 &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
-			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___   &ug Tabber                                                 &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
+			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___   &ug ColTabOverlay                                                 &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
 			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___   &ug ___ &ug ___ &ug ___ &ug ___  &ug ___ &ug ___ &ug ___ &ug ___ &ug ___  &ug ___   &ug ___ &ug ___ &ug ___
-			&ug ___ &ug ___ &ug ___   &ug Tabber   &ug Tabber           &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
+			&ug ___ &ug ___ &ug ___   &ug ColTabOverlay   &ug ColTabOverlay           &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
 			>;
-			layer-id = <TABBER>;
+			layer-id = <TAB_OVERLAY>;
 		};
 		
 		Tricoder {
@@ -402,8 +402,8 @@
 			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___   &ug ___                                                 &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
 			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___   &ug ___                                                 &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
 			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___   &ug ___                                                 &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
-			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___   &ug Tabber &ug ___ &ug ___ &ug ___  &ug ___ &ug ___ &ug ___ &ug ___ &ug ___  &ug ___   &ug ___ &ug ___ &ug ___
-			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___           &ug Tabber &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
+			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___   &ug ColTabOverlay &ug ___ &ug ___ &ug ___  &ug ___ &ug ___ &ug ___ &ug ___ &ug ___  &ug ___   &ug ___ &ug ___ &ug ___
+			&ug ___ &ug ___ &ug ___   &ug ___   &ug ___           &ug ColTabOverlay &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
 			>;
 			layer-id = <TRICODER>;
 		};
@@ -453,7 +453,7 @@
 			&ug ___ &ug ___  &ug ___     &ug ___   &ug ___   &ug ___ &ug ___ &ug ___ &ug ___  &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
 			&ug ___ &ug ___  &ug ___     &ug ___   &ug ___           &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___ &ug ___
 			>;
-			layer-id = <EDI>;
+			layer-id = <EDI_LAYER>;
 		};
 		
 		Mouse {

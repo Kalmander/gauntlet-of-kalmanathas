@@ -29,6 +29,8 @@ parse_config:
     "&num_adapt": "."
     "&num_plus_or_perma": "Num"
     "&cancel_dot": "Cancel (Dot)"
+    "&cancel_tristate": Cancel
+    "&cancel_backspacer": "Cancel Bspc"
     "&pulse_auto": "Pulse Auto"
     "&numnex": "Num + Nexus"
     "&bnums_perma": "Num Perma"
@@ -84,6 +86,7 @@ parse_config:
     "&nav_shift": Nav Shift
     "&nav_guishift_macro": Nav Gui Shift
     "&nav_guish": Nav Gui Shift
+    "&nav_guishctrl": "Nav Gui+Alt"
     "&nav_guictrl": Nav Gui Ctrl
     "&nav_alt": Nav Alt
     "&nav_ctrl": Nav Ctrl
@@ -143,6 +146,8 @@ parse_config:
     "&sbase": S Base
     "&doller": "$"
     "&minusbase": "- Base"
+    "&slashbase": "/ Base"
+    "&underbase": "_ Base"
     "&minusbase_eq": "- Base (=)"
     "&num_adaptive": Num Adapt
     "&bnav": Nav
@@ -157,6 +162,7 @@ parse_config:
     "&kp RA(P)": Ö
     "&kp RA(D)": Ð
     "&kp RA(T)": Þ
+    "&degsign": "°"
     "&key_repeat": Repeat
     "&numword_autolayer NUM_WORD": Num Word
     "&adaptive": Æ Adapt
@@ -178,6 +184,7 @@ parse_config:
     "&mouse_slow": Slow
     "&mouse_fast": Fast
     "&mouse_warp": Warp
+    "&mouse_fast_hold": "Fast (Hold)"
     "&page_up": PAGE ↑
     "&page_down": PAGE ↓
     "&kp CLEAR_AGAIN": Stay
@@ -198,10 +205,16 @@ parse_config:
     "&bt BT_SEL 1": BT 2
     "&bt BT_SEL 2": BT 3
     "&bt BT_SEL 3": BT 4
+    "&bt_0": BT 1
+    "&bt_1": BT 2
+    "&bt_2": BT 3
+    "&bt_3": BT 4
 
     "&kp LC(INS)": Copy
     "&kp LC(X)": Cut
     "&kp LS(INS)": Paste
+    "&copy_base": Copy
+    "&cut_base": Cut
 
     "&kp LG(LC(LEFT))": Prev Desk
     "&kp LG(LC(RIGHT))": Next Desk

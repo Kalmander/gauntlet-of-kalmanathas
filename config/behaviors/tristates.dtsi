@@ -29,41 +29,41 @@
 		ctrl_tab: ctrl_tab {
 				compatible = "zmk,behavior-tri-state";
 				#binding-cells = <0>;
-				bindings = <&cto TABBER>, <&kp LC(TAB)>, <&to BASE>;
+				bindings = <&cto TAB_OVERLAY>, <&kp LC(TAB)>, <&to BASE>;
 				ignored-key-positions = <_PULSE LF2 LF3 RF2 RF3 LM5 LB1>;
-				ignored-layers = <TABBER>;
+				ignored-layers = <TAB_OVERLAY>;
 		};
 
 		sctrl_tab: sctrl_tab {
 				compatible = "zmk,behavior-tri-state";
 				#binding-cells = <0>;
-				bindings = <&cto TABBER>, <&kp LC(LS(TAB))>, <&to BASE>;
+				bindings = <&cto TAB_OVERLAY>, <&kp LC(LS(TAB))>, <&to BASE>;
 				ignored-key-positions = <_PULSE LF2 LF3 RF2 RF3 LM5 LB1>;
-				ignored-layers = <TABBER>;
+				ignored-layers = <TAB_OVERLAY>;
 		};
 
 		ctrl_w: ctrl_w {
 				compatible = "zmk,behavior-tri-state";
 				#binding-cells = <0>;
-				bindings = <&cto TABBER>, <&kp LC(W)>, <&to BASE>;
+				bindings = <&cto TAB_OVERLAY>, <&kp LC(W)>, <&to BASE>;
 				ignored-key-positions = <_NEXUS LF2 LF3 RF2 RF3 LM5 LB1>;
-				ignored-layers = <NEXUS TABBER>;
+				ignored-layers = <NEXUS TAB_OVERLAY>;
 		};
 
 		cs_pgdn: cs_pgdn {
 				compatible = "zmk,behavior-tri-state";
 				#binding-cells = <0>;
-				bindings = <&cto TABBER>, <&kp LC(LS(PG_DN))>, <&to BASE>;
+				bindings = <&cto TAB_OVERLAY>, <&kp LC(LS(PG_DN))>, <&to BASE>;
 				ignored-key-positions = <LF2 LF3 RF2 RF3 LM5 LB1>;
-				ignored-layers = <TABBER>;
+				ignored-layers = <TAB_OVERLAY>;
 		};
 
 		cs_pgup: cs_pgup {
 				compatible = "zmk,behavior-tri-state";
 				#binding-cells = <0>;
-				bindings = <&cto TABBER>, <&kp LC(LS(PG_UP))>, <&to BASE>;
+				bindings = <&cto TAB_OVERLAY>, <&kp LC(LS(PG_UP))>, <&to BASE>;
 				ignored-key-positions = <LF2 LF3 RF2 RF3 LM5 LB1>;
-				ignored-layers = <TABBER>;
+				ignored-layers = <TAB_OVERLAY>;
 		};
 
 		gui_tab: gui_tab {

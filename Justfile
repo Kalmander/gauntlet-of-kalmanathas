@@ -82,9 +82,20 @@ clean-nix:
     nix-collect-garbage --delete-old
 
 # parse & plot keymap
-draw:
+# usage:
+#   just draw          # full draw + per-layer svgs
+#   just draw single   # fast draw of combined svg only
+draw mode='all':
     #!/usr/bin/env bash
     set -euo pipefail
+    case "{{ mode }}" in
+        all|single) ;;
+        *)
+            echo "Invalid draw mode: '{{ mode }}' (expected: all|single)" >&2
+            exit 1
+            ;;
+    esac
+
     # parse…
     keymap -c "{{ draw }}/config.yaml" \
       parse -z "{{ config }}/glove80.keymap" \
@@ -98,6 +109,27 @@ draw:
     keymap -c "{{ draw }}/config.yaml" \
       draw "{{ draw }}/base.yaml" \
       > "{{ draw }}/base.svg"
+
+    if [[ "{{ mode }}" == "single" ]]; then
+        exit 0
+    fi
+
+    # also draw one SVG per layer
+    layers_dir="{{ draw }}/layers"
+    mkdir -p "$layers_dir"
+    find "$layers_dir" -maxdepth 1 -type f -name '*.svg' -delete
+    i=0
+    yq -r '.layers | to_entries[] | .key' "{{ draw }}/base.yaml" | while IFS= read -r layer; do
+        i=$((i + 1))
+        safe_layer=$(printf '%s' "$layer" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g')
+        [[ -z "$safe_layer" ]] && safe_layer="layer-$i"
+        layer_file="$layers_dir/$(printf '%02d' "$i")-$safe_layer.svg"
+
+        keymap -c "{{ draw }}/config.yaml" \
+          draw "{{ draw }}/base.yaml" \
+          --select-layers "$layer" \
+          --output "$layer_file"
+    done
 
 # initialize west
 init:

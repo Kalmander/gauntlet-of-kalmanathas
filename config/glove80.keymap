@@ -31,13 +31,13 @@
 #define NEXUS 17
 #define PULSE_LOCK 18
 #define NEXUS_LOCK 19
-#define TABBER 20
+#define TAB_OVERLAY 20
 #define TRICODER 21
 #define BACKSPACER 22
 #define FUNCTIONS 23
 #define ICE 24
 #define JOKER 25
-#define EDI 26
+#define EDI_LAYER 26
 #define MOUSE 27
 #define MOUSE_SLOW 28
 #define MOUSE_WARP 29
@@ -322,7 +322,7 @@
 			>;
 		};
 
-		Tabber {
+		TabOverlay {
 			bindings = <
 			
 			&trans  &trans  &trans  &trans  &trans                                                                  &trans  &trans  &trans  &trans  &trans
@@ -395,7 +395,7 @@
 			&kp GRAVE  &kp U     &kp Q   &kp W   &kp E   &kp R                                                                           &kp Y   &kp_then_layer LG(N7) BASE  &kp_then_layer LG(N8) BASE  &kp_then_layer LG(N9) BASE  &kp P     &kp BSLH
 			&kp ESC    &kp I     &kp A   &kp S   &kp D   &kp F                                                                           &kp H   &kp_then_layer LG(N4) BASE  &kp_then_layer LG(N5) BASE  &kp_then_layer LG(N6) BASE  &kp SEMI  &kp SQT
 			&kp TAB    &kp Z     &kp X   &kp G   &kp C   &kp V  &kp LSHFT  &kp LCTRL  &kp LALT     &kp LALT  &kp RCTRL     &kp RSHFT     &kp N   &kp_then_layer LG(N1) BASE  &kp_then_layer LG(N2) BASE  &kp_then_layer LG(N3) BASE  &kp FSLH  &kp DEL
-			&kp PSCRN  &kp BSPC  &kp J   &kp K   &kp T          &mo EDI    &kp SPACE  &kp RET      &kp RGUI  &kp C_VOL_DN  &kp C_VOL_UP          &kp UP                      &kp DOWN                    &kp LBKT                    &kp RBKT  &to 0
+			&kp PSCRN  &kp BSPC  &kp J   &kp K   &kp T          &mo EDI_LAYER    &kp SPACE  &kp RET      &kp RGUI  &kp C_VOL_DN  &kp C_VOL_UP          &kp UP                      &kp DOWN                    &kp LBKT                    &kp RBKT  &to 0
 			
 			>;
 		};
