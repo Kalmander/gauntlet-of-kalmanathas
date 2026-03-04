@@ -83,18 +83,14 @@ clean-nix:
 
 # parse & plot keymap
 # usage:
-#   just draw          # full draw + per-layer svgs
-#   just draw single   # fast draw of combined svg only
+#   just draw             # full draw + per-layer svgs
+#   just draw single      # fast draw of combined svg only
+#   just draw 5           # redraw only layer 5 (1-based)
+#   just draw NumWord     # redraw only layer named NumWord
 draw mode='all':
     #!/usr/bin/env bash
     set -euo pipefail
-    case "{{ mode }}" in
-        all|single) ;;
-        *)
-            echo "Invalid draw mode: '{{ mode }}' (expected: all|single)" >&2
-            exit 1
-            ;;
-    esac
+    mode="{{ mode }}"
 
     # parse…
     keymap -c "{{ draw }}/config.yaml" \
@@ -105,31 +101,82 @@ draw mode='all':
     # fix layer names…
     yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
 
-    # draw (uses physical_layout: glove80 from config.yaml)
-    keymap -c "{{ draw }}/config.yaml" \
-      draw "{{ draw }}/base.yaml" \
-      > "{{ draw }}/base.svg"
+    case "$mode" in
+        all|single)
+            # draw (uses physical_layout: glove80 from config.yaml)
+            keymap -c "{{ draw }}/config.yaml" \
+              draw "{{ draw }}/base.yaml" \
+              > "{{ draw }}/base.svg"
+            ;;
+    esac
 
-    if [[ "{{ mode }}" == "single" ]]; then
+    if [[ "$mode" == "single" ]]; then
         exit 0
     fi
 
-    # also draw one SVG per layer
+    # collect layers in draw order
+    mapfile -t layers < <(yq -r '.layers | to_entries[] | .key' "{{ draw }}/base.yaml")
+    if [[ ${#layers[@]} -eq 0 ]]; then
+        echo "No layers found in {{ draw }}/base.yaml" >&2
+        exit 1
+    fi
+
     layers_dir="{{ draw }}/layers"
     mkdir -p "$layers_dir"
-    find "$layers_dir" -maxdepth 1 -type f -name '*.svg' -delete
-    i=0
-    yq -r '.layers | to_entries[] | .key' "{{ draw }}/base.yaml" | while IFS= read -r layer; do
-        i=$((i + 1))
-        safe_layer=$(printf '%s' "$layer" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g')
-        [[ -z "$safe_layer" ]] && safe_layer="layer-$i"
-        layer_file="$layers_dir/$(printf '%02d' "$i")-$safe_layer.svg"
 
-        keymap -c "{{ draw }}/config.yaml" \
-          draw "{{ draw }}/base.yaml" \
-          --select-layers "$layer" \
-          --output "$layer_file"
-    done
+    if [[ "$mode" == "all" ]]; then
+        # draw one SVG per layer
+        find "$layers_dir" -maxdepth 1 -type f -name '*.svg' -delete
+        i=0
+        for layer in "${layers[@]}"; do
+            i=$((i + 1))
+            safe_layer=$(printf '%s' "$layer" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g')
+            [[ -z "$safe_layer" ]] && safe_layer="layer-$i"
+            layer_file="$layers_dir/$(printf '%02d' "$i")-$safe_layer.svg"
+
+            keymap -c "{{ draw }}/config.yaml" \
+              draw "{{ draw }}/base.yaml" \
+              --select-layers "$layer" \
+              --output "$layer_file"
+        done
+        exit 0
+    fi
+
+    layer_name=""
+    layer_index=0
+    if [[ "$mode" =~ ^[0-9]+$ ]]; then
+        layer_index=$((10#$mode))
+        if (( layer_index < 1 || layer_index > ${#layers[@]} )); then
+            echo "Layer index out of range: $mode (valid: 1-${#layers[@]})" >&2
+            exit 1
+        fi
+        layer_name="${layers[$((layer_index - 1))]}"
+    else
+        i=0
+        for layer in "${layers[@]}"; do
+            i=$((i + 1))
+            if [[ "$layer" == "$mode" ]]; then
+                layer_name="$layer"
+                layer_index=$i
+                break
+            fi
+        done
+
+        if [[ -z "$layer_name" ]]; then
+            echo "Unknown layer: $mode" >&2
+            echo "Available layers: ${layers[*]}" >&2
+            exit 1
+        fi
+    fi
+
+    safe_layer=$(printf '%s' "$layer_name" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g')
+    [[ -z "$safe_layer" ]] && safe_layer="layer-$layer_index"
+    layer_file="$layers_dir/$(printf '%02d' "$layer_index")-$safe_layer.svg"
+
+    keymap -c "{{ draw }}/config.yaml" \
+      draw "{{ draw }}/base.yaml" \
+      --select-layers "$layer_name" \
+      --output "$layer_file"
 
 # initialize west
 init:

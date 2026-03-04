@@ -124,6 +124,18 @@ parse_config:
     "&skshift": "Shift Sticky"
     "&skgui": "Gui Sticky"
     "&skctrl": "Ctrl Sticky"
+    # pretty labels for numword "go-to-layer then sticky-mod" macro keys
+    "&to_then_sk NUM_WORD_MODDED LCTRL": Num Ctrl
+    "&to_then_sk NUM_WORD_MODDED RCTRL": Num Ctrl
+    "&to_then_sk NUM_WORD_MODDED LALT": Num Alt
+    "&to_then_sk NUM_WORD_MODDED RALT": Num Alt
+    "&to_then_sk NUM_WORD_MODDED LSHIFT": Num Shift
+    "&to_then_sk NUM_WORD_MODDED RSHIFT": Num Shift
+    "&to_then_sk NUM_WORD_MODDED LGUI": Num Gui
+    "&to_then_sk NUM_WORD_MODDED RGUI": Num Gui
+    "&dqt_l": '" (L)'
+    "&nums_perma": Num Perma
+    "&ae_dot": Æ (.)
     "&cskalt": "Alt Sticky"
     "&cskshift": "Shift Sticky"
     "&cskgui": "Gui Sticky"
