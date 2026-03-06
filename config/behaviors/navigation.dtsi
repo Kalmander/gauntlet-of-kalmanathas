@@ -218,7 +218,7 @@
 			compatible = "zmk,behavior-tri-state";
 			#binding-cells = <0>;
 			bindings = <&nav_gui_alt_on>, <&none>, <&nav_gui_alt_off>;
-			ignored-key-positions = <RM1 RM2 RM3 RM4>;
+			ignored-key-positions = <LM1 RM1 RM2 RM3 RM4>;
 			ignored-layers = <NAV_WORD_ALT>;
 		};
 
