@@ -5,6 +5,7 @@ config := absolute_path('config')
 build := absolute_path('.build')
 out := absolute_path('firmware')
 draw := absolute_path('draw')
+gauntlet_module := absolute_path('local-modules/gauntlet-behaviors')
 
 # parse combos.dtsi and adjust settings to not run out of slots
 # _parse_combos:
@@ -49,7 +50,9 @@ _build_single $board $shield $snippet *west_args:
 
     echo "Building firmware for $artifact..."
     west build -s zmk/app -d "$build_dir" -b $board {{ west_args }} ${snippet:+-S "$snippet"} -- \
-        -DZMK_CONFIG="{{ config }}" ${shield:+-DSHIELD="$shield"}
+        -DZMK_CONFIG="{{ config }}" \
+        -DZMK_EXTRA_MODULES="{{ gauntlet_module }}" \
+        ${shield:+-DSHIELD="$shield"}
 
     if [[ -f "$build_dir/zephyr/zmk.uf2" ]]; then
         mkdir -p "{{ out }}" && cp "$build_dir/zephyr/zmk.uf2" "{{ out }}/$artifact.uf2"
@@ -209,7 +212,8 @@ test $testpath *FLAGS:
         echo "Running $testcase..."
         rm -rf "$build_dir"
         west build -s zmk/app -d "$build_dir" -b native_posix_64 -- \
-            -DCONFIG_ASSERT=y -DZMK_CONFIG="$config_dir"
+            -DCONFIG_ASSERT=y -DZMK_CONFIG="$config_dir" \
+            -DZMK_EXTRA_MODULES="{{ gauntlet_module }}"
     fi
 
     ${build_dir}/zephyr/zmk.exe | sed -e "s/.*> //" |

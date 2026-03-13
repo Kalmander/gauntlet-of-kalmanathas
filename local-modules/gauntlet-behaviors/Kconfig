@@ -1,0 +1,7 @@
+menu "Gauntlet Behaviors"
+
+config GAUNTLET_BEHAVIOR_AUTO_LAYER_LOCAL
+    bool "Gauntlet auto-layer local behavior"
+    default y
+
+endmenu

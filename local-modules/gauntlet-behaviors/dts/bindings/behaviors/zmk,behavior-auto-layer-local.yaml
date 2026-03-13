@@ -1,0 +1,29 @@
+# Local copy of auto-layer for Gauntlet-specific extensions.
+# Keep this separate from the vendored zmk-auto-layer module so upstream updates stay easy to pull.
+
+description: Auto layer behavior with optional max keypress support
+
+compatible: "zmk,behavior-auto-layer-local"
+
+include: one_param.yaml
+
+properties:
+  continue-list:
+    type: array
+    required: true
+    description: |
+      List of key codes which should continue the auto layer behavior.
+      If any of the ignore- options are set, this list will be applied
+      in addition to them.
+  ignore-alphas:
+    type: boolean
+    description: Continue auto layer behavior for all alpha keys.
+  ignore-numbers:
+    type: boolean
+    description: Continue auto layer behavior for all numbers.
+  ignore-modifiers:
+    type: boolean
+    description: Continue auto layer behavior for all modifiers.
+  max-keypresses:
+    type: int
+    description: Automatically deactivate the layer after this many continued key presses. Zero disables the limit.
