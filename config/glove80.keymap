@@ -354,7 +354,7 @@
 			&trans  &trans  &trans  &trans  &trans                                                                  &trans  &trans  &trans  &trans  &trans
 			&trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
 			&trans  &trans  &trans  &trans  &trans  &trans                                                  &cancel_backspacer      &trans  &trans  &trans  &trans  &trans
-			&trans  &trans  &trans  &trans  &trans  &bnexus                                               &trans  &trans  &trans  &trans  &trans  &trans
+			&trans  &trans  &trans  &trans  &trans  &bnexus                                               &key_repeat  &trans  &trans  &trans  &trans  &trans
 			&trans  &trans  &trans  &bnexus &trans  &kp LC(BACKSPACE)             &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 			&trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
 			

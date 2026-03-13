@@ -414,9 +414,9 @@
 		dotter: dotter {
 				compatible = "zmk,behavior-tri-state";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp DOT>, <&to BASE>;
+				bindings = <&to BACKSPACER>, <&kp DOT>, <&to BASE>;
 				ignored-key-positions = <_KEYREPEAT>;
-				ignored-layers = <TRICODER>;
+				ignored-layers = <BACKSPACER>;
         timeout-ms = <2000>;
 		};
 

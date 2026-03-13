@@ -11,6 +11,7 @@ parse_config:
   
   raw_binding_map:
     "&kp DQT": \"
+    "&dotter": ". with repeat"
     "&combo_dv_macro": "dv"
     "&combo_dv_macro": "dv"
     "&combo_sh_macro": "sh"
