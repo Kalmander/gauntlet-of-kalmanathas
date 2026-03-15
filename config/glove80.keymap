@@ -342,8 +342,8 @@
 			&trans  &trans  &trans  &trans  &trans    &trans                                                                        &trans       &key_repeat  &trans  &trans  &trans  &trans
 			&trans  &trans  &trans  &trans  &trans    &trans                                                                        &sk LSHIFT   &trans       &trans  &trans  &trans  &trans
 			&trans  &trans  &trans  &trans  &kp A     &bpulse                                                                       &key_repeat  &trans       &trans  &trans  &trans  &trans
-			&trans  &trans  &kp TAB &bnexus &kp ENTER &kp BACKSPACE &trans  &trans  &trans        &trans      &trans  &trans        &kp ESC      &trans       &trans  &trans  &trans  &trans
-			&trans  &trans  &trans  &trans  &trans                  &kp TAB  &trans  &bnums_plus  &bnums_plus &kp LS(ENTER)  &trans              &trans       &trans  &trans  &trans  &trans
+			&trans  &trans  &trans  &bnexus &kp ENTER &kp BACKSPACE &trans  &trans  &trans        &trans      &trans  &trans        &kp ESC      &trans       &trans  &trans  &trans  &trans
+			&trans  &trans  &kp TAB &trans   &trans                  &trans   &trans  &bnums_plus  &bnums_plus &kp LS(ENTER)  &trans              &trans       &trans  &kp TAB  &trans &trans
 			
 			>;
 		};
