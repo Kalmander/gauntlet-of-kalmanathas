@@ -28,3 +28,6 @@ properties:
   ignore-release-interrupts:
     type: boolean
     description: Do not end the tri-state when a non-ignored key is released.
+  refresh-on-allowed-keypress:
+    type: boolean
+    description: Extend the timeout when the tri-state key or another ignored key is pressed.

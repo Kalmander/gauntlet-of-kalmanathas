@@ -36,6 +36,7 @@ struct behavior_tri_state_local_config {
     int32_t timeout_ms;
     int tap_ms;
     bool ignore_release_interrupts;
+    bool refresh_on_allowed_keypress;
     uint8_t ignored_key_positions[];
 };
 
@@ -52,7 +53,10 @@ struct active_tri_state_local {
     int64_t release_at;
     bool timer_started;
     bool timer_cancelled;
+    uint8_t allowed_keys_pressed;
 };
+
+static void trigger_end_behavior(struct active_tri_state_local *tri_state);
 
 static int stop_timer(struct active_tri_state_local *tri_state) {
     int timer_cancel_result = k_work_cancel_delayable(&tri_state->release_timer);
@@ -65,11 +69,28 @@ static int stop_timer(struct active_tri_state_local *tri_state) {
 
 static void reset_timer(int32_t timestamp, struct active_tri_state_local *tri_state) {
     tri_state->release_at = timestamp + tri_state->config->timeout_ms;
+    tri_state->timer_cancelled = false;
     int32_t ms_left = tri_state->release_at - k_uptime_get();
     if (ms_left > 0) {
         k_work_schedule(&tri_state->release_timer, K_MSEC(ms_left));
         LOG_DBG("Successfully reset tri-state timer");
     }
+}
+
+static void resume_timer(struct active_tri_state_local *tri_state) {
+    tri_state->timer_cancelled = false;
+    int32_t ms_left = tri_state->release_at - k_uptime_get();
+    if (ms_left > 0) {
+        k_work_schedule(&tri_state->release_timer, K_MSEC(ms_left));
+        LOG_DBG("Successfully resumed tri-state timer");
+        return;
+    }
+    if (!tri_state->is_active || tri_state->is_pressed || tri_state->allowed_keys_pressed > 0) {
+        return;
+    }
+    LOG_DBG("Tri-state deactivated due to expired allowed keypress timer");
+    tri_state->is_active = false;
+    trigger_end_behavior(tri_state);
 }
 
 static void trigger_end_behavior(struct active_tri_state_local *tri_state) {
@@ -88,7 +109,8 @@ static void behavior_tri_state_local_timer_handler(struct k_work *item) {
     struct k_work_delayable *d_work = k_work_delayable_from_work(item);
     struct active_tri_state_local *tri_state =
         CONTAINER_OF(d_work, struct active_tri_state_local, release_timer);
-    if (!tri_state->is_active || tri_state->timer_cancelled || tri_state->is_pressed) {
+    if (!tri_state->is_active || tri_state->timer_cancelled || tri_state->is_pressed ||
+        tri_state->allowed_keys_pressed > 0) {
         return;
     }
     LOG_DBG("Tri-state deactivated due to timer");
@@ -123,6 +145,7 @@ static int new_tri_state(struct zmk_behavior_binding_event *event,
             ref_tri_state->is_active = true;
             ref_tri_state->is_pressed = false;
             ref_tri_state->first_press = true;
+            ref_tri_state->allowed_keys_pressed = 0;
             *tri_state = ref_tri_state;
             return 0;
         }
@@ -235,6 +258,21 @@ static int tri_state_local_position_state_changed_listener(const zmk_event_t *eh
             continue;
         }
         if (tri_state->position == ev->position) {
+            if (!tri_state->config->refresh_on_allowed_keypress) {
+                continue;
+            }
+            if (ev->state) {
+                tri_state->allowed_keys_pressed++;
+                reset_timer(ev->timestamp, tri_state);
+                stop_timer(tri_state);
+            } else {
+                if (tri_state->allowed_keys_pressed > 0) {
+                    tri_state->allowed_keys_pressed--;
+                }
+                if (tri_state->allowed_keys_pressed == 0) {
+                    resume_timer(tri_state);
+                }
+            }
             continue;
         }
         if (!is_other_key_ignored(tri_state, ev->position)) {
@@ -255,9 +293,22 @@ static int tri_state_local_position_state_changed_listener(const zmk_event_t *eh
             return ZMK_EV_EVENT_BUBBLE;
         }
         if (ev->state) {
+            if (tri_state->config->refresh_on_allowed_keypress) {
+                tri_state->allowed_keys_pressed++;
+                reset_timer(ev->timestamp, tri_state);
+            }
             stop_timer(tri_state);
         } else {
-            reset_timer(ev->timestamp, tri_state);
+            if (tri_state->config->refresh_on_allowed_keypress) {
+                if (tri_state->allowed_keys_pressed > 0) {
+                    tri_state->allowed_keys_pressed--;
+                }
+                if (tri_state->allowed_keys_pressed == 0) {
+                    resume_timer(tri_state);
+                }
+            } else {
+                reset_timer(ev->timestamp, tri_state);
+            }
         }
     }
     return ZMK_EV_EVENT_BUBBLE;
@@ -317,6 +368,7 @@ static int tri_state_local_layer_state_changed_listener(const zmk_event_t *eh) {
         .timeout_ms = DT_INST_PROP(n, timeout_ms),                                                 \
         .tap_ms = DT_INST_PROP(n, tap_ms),                                                         \
         .ignore_release_interrupts = DT_INST_PROP(n, ignore_release_interrupts),                   \
+        .refresh_on_allowed_keypress = DT_INST_PROP(n, refresh_on_allowed_keypress),               \
         .start_behavior = _TRANSFORM_ENTRY(0, n),                                                  \
         .continue_behavior = _TRANSFORM_ENTRY(1, n),                                               \
         .end_behavior = _TRANSFORM_ENTRY(2, n)};                                                   \

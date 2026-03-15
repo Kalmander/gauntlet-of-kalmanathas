@@ -95,6 +95,7 @@
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
+        refresh-on-allowed-keypress;
         timeout-ms = <2000>;
 		};
     /* Ath, þetta er frekar bjánaleg lausn til að láta sticky shift virka með enter (handa inni mods virka augljóslega enn) */
@@ -105,6 +106,7 @@
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
+        refresh-on-allowed-keypress;
         timeout-ms = <2000>;
 		};
 		gui_enters: gui_enter_stick {
@@ -114,6 +116,7 @@
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
+        refresh-on-allowed-keypress;
         timeout-ms = <2000>;
 		};
 		guishift_enters: guishift_enter_stick {
@@ -123,6 +126,7 @@
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
+        refresh-on-allowed-keypress;
         timeout-ms = <2000>;
 		};
 		ns_enters: normal_shift_enters {
@@ -159,6 +163,7 @@
 				ignored-key-positions = <_NEXUS _ENTER LM2 _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
+        refresh-on-allowed-keypress;
         timeout-ms = <2000>;
 		};
     /* Ath, þetta er frekar bjánaleg lausn til að láta sticky shift virka með enter (handa inni mods virka augljóslega enn) */
@@ -169,6 +174,7 @@
 				ignored-key-positions = <_NEXUS _ENTER LM2 _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
+        refresh-on-allowed-keypress;
         timeout-ms = <2000>;
 		};
 		gui_enters2: gui_enter_stick2 {
@@ -178,6 +184,7 @@
 				ignored-key-positions = <_NEXUS _ENTER LM2 _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
+        refresh-on-allowed-keypress;
         timeout-ms = <2000>;
 		};
 		ns_enters2: normal_shift_enters2 {
