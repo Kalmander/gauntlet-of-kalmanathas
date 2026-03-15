@@ -27,19 +27,21 @@
 		};
 
 		ctrl_tab: ctrl_tab {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&cto TAB_OVERLAY>, <&kp LC(TAB)>, <&to BASE>;
 				ignored-key-positions = <_PULSE LF2 LF3 RF2 RF3 LM5 LB1>;
 				ignored-layers = <TAB_OVERLAY>;
+        ignore-release-interrupts;
 		};
 
 		sctrl_tab: sctrl_tab {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&cto TAB_OVERLAY>, <&kp LC(LS(TAB))>, <&to BASE>;
 				ignored-key-positions = <_PULSE LF2 LF3 RF2 RF3 LM5 LB1>;
 				ignored-layers = <TAB_OVERLAY>;
+        ignore-release-interrupts;
 		};
 
 		ctrl_w: ctrl_w {
@@ -67,52 +69,58 @@
 		};
 
 		gui_tab: gui_tab {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&cto NEXUS>, <&kp LG(TAB)>, <&to BASE>;
 				ignored-key-positions = <_NEXUS RF2 RF3>;
 				ignored-layers = <NEXUS>;
+        ignore-release-interrupts;
 		};
 
 		sgui_tab: sgui_tab {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&cto NEXUS>, <&kp LG(LS(TAB))>, <&to BASE>;
 				ignored-key-positions = <_NEXUS RF2 RF3>;
 				ignored-layers = <NEXUS>;
+        ignore-release-interrupts;
 		};
 
 		enters_normal: enter_stick {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp ENTER>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
         timeout-ms = <2000>;
 		};
     /* Ath, þetta er frekar bjánaleg lausn til að láta sticky shift virka með enter (handa inni mods virka augljóslega enn) */
 		shift_enters: shift_enter_stick {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
         timeout-ms = <2000>;
 		};
 		gui_enters: gui_enter_stick {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
         timeout-ms = <2000>;
 		};
 		guishift_enters: guishift_enter_stick {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp LG(LS(ENTER))>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
         timeout-ms = <2000>;
 		};
 		ns_enters: normal_shift_enters {
@@ -134,36 +142,40 @@
 			mods = <(MOD_LGUI|MOD_RGUI)>;
 		};
 		senterer: shift_enterer {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&to MOUSE>, <&kp LS(ENTER)>, <&to BASE>;
 				ignored-key-positions = <_ENTER LB1 LF2>;
 				ignored-layers = <MOUSE>;
+        ignore-release-interrupts;
         timeout-ms = <2000>;
 		};
 		enters_normal2: enter_stick2 {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp ENTER>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER LM2>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
         timeout-ms = <2000>;
 		};
     /* Ath, þetta er frekar bjánaleg lausn til að láta sticky shift virka með enter (handa inni mods virka augljóslega enn) */
 		shift_enters2: shift_enter_stick2 {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER LM2>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
         timeout-ms = <2000>;
 		};
 		gui_enters2: gui_enter_stick2 {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER LM2>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
         timeout-ms = <2000>;
 		};
 		ns_enters2: normal_shift_enters2 {
@@ -181,39 +193,43 @@
     
 
 		tabber_normal: tabber_normal {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp TAB>, <&to BASE>;
 				/* ignored-key-positions = <_KEYREPEAT LM1 LB1 _TAB _RSHIFT>; */
 				ignored-key-positions = <_KEYREPEAT LM1 LB1 _RSHIFT>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
 		};
 		shift_tabber: shift_tab_stick {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				/* bindings = <&to TRICODER>, <&kpsk LS(TAB) LSHIFT>, <&to BASE>; */
 				bindings = <&to TRICODER>, <&kp LS(TAB)>, <&to BASE>;
 				/* ignored-key-positions = <_KEYREPEAT LM1 LB1 _TAB _RSHIFT>; */
 				ignored-key-positions = <_KEYREPEAT LM1 LB1 _RSHIFT>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
 		};
 		gui_tabber: gui_tab_stick {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				/* bindings = <&to TRICODER>, <&kpsk LG(TAB) LGUI>, <&cto BASE>; */
 				bindings = <&to TRICODER>, <&kp LG(TAB)>, <&to BASE>;
 				/* ignored-key-positions = <_KEYREPEAT LM1 LB1 _TAB _RSHIFT>; */
 				ignored-key-positions = <_KEYREPEAT LM1 LB1 _RSHIFT>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
 		};
 		guishift_tabber: guishift_tab_stick {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				/* bindings = <&to TRICODER>, <&kpsk LG(LS(TAB)) LS(LGUI)>, <&cto BASE>; */
 				bindings = <&to TRICODER>, <&kp LG(LS(TAB))>, <&to BASE>;
 				/* ignored-key-positions = <_KEYREPEAT LM1 LB1 _TAB _RSHIFT>; */
 				ignored-key-positions = <_KEYREPEAT LM1 LB1 _RSHIFT>;
 				ignored-layers = <TRICODER>;
+        ignore-release-interrupts;
 		};
 		gui_shift_or_not_tab: gui_shift_or_not_tab {
 			compatible = "zmk,behavior-mod-morph";

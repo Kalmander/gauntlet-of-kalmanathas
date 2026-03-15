@@ -1,0 +1,30 @@
+# Local copy of tri-state for Gauntlet-specific extensions.
+# Keep this separate from the vendored zmk-tri-state module so upstream updates stay easy to pull.
+
+description: Tri-state behavior with optional release-interrupt suppression
+
+compatible: "zmk,behavior-tri-state-local"
+
+include: zero_param.yaml
+
+properties:
+  bindings:
+    type: phandle-array
+    required: true
+  ignored-key-positions:
+    type: array
+    required: false
+    default: []
+  ignored-layers:
+    type: array
+    required: false
+    default: []
+  timeout-ms:
+    type: int
+    default: -1
+  tap-ms:
+    type: int
+    default: 5
+  ignore-release-interrupts:
+    type: boolean
+    description: Do not end the tri-state when a non-ignored key is released.
