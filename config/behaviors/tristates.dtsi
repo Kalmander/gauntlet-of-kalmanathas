@@ -91,7 +91,7 @@
 		enters_normal: enter_stick {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp ENTER>, <&to BASE>;
+				bindings = <&to TRICODER>, <&kp ENTER>, <&tog_off_layer TRICODER>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -102,7 +102,7 @@
 		shift_enters: shift_enter_stick {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&to BASE>;
+				bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&tog_off_layer TRICODER>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -112,7 +112,7 @@
 		gui_enters: gui_enter_stick {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&to BASE>;
+				bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&tog_off_layer TRICODER>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -122,7 +122,7 @@
 		guishift_enters: guishift_enter_stick {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp LG(LS(ENTER))>, <&to BASE>;
+				bindings = <&to TRICODER>, <&kp LG(LS(ENTER))>, <&tog_off_layer TRICODER>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -159,7 +159,7 @@
 		enters_normal2: enter_stick2 {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp ENTER>, <&to BASE>;
+				bindings = <&to TRICODER>, <&kp ENTER>, <&tog_off_layer TRICODER>;
 				ignored-key-positions = <_NEXUS _ENTER LM2 _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -170,7 +170,7 @@
 		shift_enters2: shift_enter_stick2 {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&to BASE>;
+				bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&tog_off_layer TRICODER>;
 				ignored-key-positions = <_NEXUS _ENTER LM2 _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -180,7 +180,7 @@
 		gui_enters2: gui_enter_stick2 {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&to BASE>;
+				bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&tog_off_layer TRICODER>;
 				ignored-key-positions = <_NEXUS _ENTER LM2 _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -272,7 +272,7 @@
 				compatible = "zmk,behavior-tri-state";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp QMARK>, <&to BASE>;
-				ignored-key-positions = <_NEXUS _ENTER _KEYREPEAT _NUMLEFT _NUMRIGHT RT1>;
+				ignored-key-positions = <_NEXUS _ENTER _CDELETER _DELETER _KEYREPEAT _NUMLEFT _NUMRIGHT RT1>;
 				ignored-layers = <TRICODER>;
         timeout-ms = <2000>;
 		};
@@ -281,7 +281,7 @@
 				compatible = "zmk,behavior-tri-state";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp EXCL>, <&to BASE>;
-				ignored-key-positions = <_NEXUS _ENTER _KEYREPEAT _NUMLEFT _NUMRIGHT RT1>;
+				ignored-key-positions = <_NEXUS _ENTER _CDELETER _DELETER _KEYREPEAT _NUMLEFT _NUMRIGHT RT1>;
 				ignored-layers = <TRICODER>;
         timeout-ms = <2000>;
 		};
@@ -322,7 +322,7 @@
 				compatible = "zmk,behavior-tri-state";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp COLON>, <&to BASE>;
-				ignored-key-positions = <_ENTER _KEYREPEAT _NUMLEFT _NUMRIGHT>;
+				ignored-key-positions = <_ENTER _CDELETER _DELETER _KEYREPEAT _NUMLEFT _NUMRIGHT>;
 				/* ignored-key-positions = <_KEYREPEAT _NUMLEFT _NUMRIGHT>; */
 				ignored-layers = <TRICODER>;
         timeout-ms = <2000>;
@@ -332,7 +332,7 @@
 				compatible = "zmk,behavior-tri-state";
 				#binding-cells = <0>;
 				bindings = <&to TRICODER>, <&kp SEMI>, <&to BASE>;
-				ignored-key-positions = <_ENTER _KEYREPEAT _NUMLEFT _NUMRIGHT>;
+				ignored-key-positions = <_ENTER _CDELETER _DELETER _KEYREPEAT _NUMLEFT _NUMRIGHT>;
 				/* ignored-key-positions = <_KEYREPEAT _NUMLEFT _NUMRIGHT>; */
 				ignored-layers = <TRICODER>;
 		};

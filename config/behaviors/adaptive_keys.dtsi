@@ -173,6 +173,8 @@
 
 			ak_xp { trigger-keys = <X>; max-prior-idle-ms = <2000>; bindings = <&kp P>; };
 
+			ak_tabrep { trigger-keys = <TAB>; max-prior-idle-ms = <2000>; bindings = <&kp TAB>; };
+
       
       /* man ekki af hveru ég gerði þetta strict-modifiers en uuhh treystum mér I guess */
 			ak_cspace { trigger-keys = <C>; max-prior-idle-ms = <2000>; strict-modifiers; bindings = <&kp SPACE>; };
