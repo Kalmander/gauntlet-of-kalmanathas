@@ -382,7 +382,7 @@
 			&trans  &trans  &isl_y       &kp RA(O)    &kp RA(U)    &trans                                                     &trans          &skp F  &skp D  &skp L  &skp RA(T)  &trans
 			&trans  &skp W  &kp RA(I)    &kp RA(E)    &kp RA(A)    &kps SQT SPACE                                               &kps SQT RA(T)  &skp H  &skp T  &skp N  &skp P  &skp X
 			&trans  &trans  &kps SQT DOT &kps SQT SQT &kps SQT COMMA &trans &trans &trans  &trans  &trans  &trans  &trans  &skp M          &skp S  &skp G  &skp B  &skp J  &skp J
-			&trans  &trans  &trans       &trans       &trans                &trans &skp C  &trans    &trans  &skp K  &skp R                  &trans  &trans  &trans  &trans  &trans
+			&trans  &trans  &trans       &trans       &trans                &kps SQT SPACE &skp C  &trans    &trans  &skp K  &skp R                  &trans  &trans  &trans  &trans  &trans
 			
 			>;
 		};
