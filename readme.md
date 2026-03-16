@@ -3,9 +3,48 @@
 This repo started from urob's config, but this README documents how this
 specific repo works today.
 
-## What This Repo Contains
+## Quick Start
+
+Fresh machine:
+
+```bash
+git clone https://github.com/kalmander/gauntlet-of-kalmanathas.git
+cd gauntlet-of-kalmanathas
+direnv allow
+just init
+```
+
+If you do not use `direnv`, enter the dev shell manually first:
+
+```bash
+nix develop
+just init
+```
+
+Daily use:
+
+```bash
+just list
+just build glove80_lh
+just build glove80_rh
+just draw
+```
+
+Artifacts end up in `firmware/` as `.uf2` files.
+
+`just init` is the important first-time setup step. It runs:
+
+```bash
+west init -l config
+west update --fetch-opt=--filter=blob:none
+west zephyr-export
+```
+
+## Repo Layout
 
 - `config/`: keymap, behaviors, combos, and manifest (`west.yml`)
+- `modules/`: west-managed upstream dependencies, including `modules/zmk/...`
+- `modules-local/`: repo-owned local Zephyr modules, currently `gauntlet-behaviors`
 - `Justfile`: daily commands (`init`, `build`, `update`, `draw`, etc.)
 - `build.yaml`: board targets (currently `glove80_lh` and `glove80_rh`)
 - `firmware/`: generated output files (`.uf2`/`.bin`) after builds
@@ -13,7 +52,8 @@ specific repo works today.
 - `config/archive/`: commented archive of removed old snippets
 
 Dependencies are pinned in `config/west.yml` (including a pinned `zmk` commit
-and pinned module revisions).
+and pinned module revisions). Repo-specific behavior code lives in
+`modules-local/` and is passed to ZMK via `ZMK_EXTRA_MODULES`.
 
 ## Recommended Setup (Nix + Just)
 
@@ -47,13 +87,8 @@ nix develop
 just init
 ```
 
-This runs:
-
-```bash
-west init -l config
-west update --fetch-opt=--filter=blob:none
-west zephyr-export
-```
+This creates the west workspace from `config/west.yml`, fetches dependencies,
+and exports the Zephyr CMake package.
 
 ## Daily Workflow
 
@@ -134,6 +169,13 @@ Useful when pinning `zmk` to a commit:
 git -C zmk rev-parse HEAD
 ```
 
+Useful when pinning a west-managed module:
+
+```bash
+git -C modules/zmk/adaptive-key rev-parse HEAD
+git -C modules/zmk/unicode rev-parse HEAD
+```
+
 ### Update local Nix toolchain lockfile
 
 ```bash
@@ -187,6 +229,8 @@ just init
 
 - This repo uses `west` for dependency management. Treat `config/west.yml` as
   the source of truth for dependency revisions.
+- Root-level dependency repos like `zmk`, `zephyr`, and `cirque-input-module`
+  are west-managed workspace checkouts, not repo-owned source files.
 - Archived removed snippets are in
   `config/archive/removed_nodes_2026-02-27.dtsi` (commented, not included in
   builds).
