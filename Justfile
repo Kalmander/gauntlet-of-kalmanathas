@@ -5,7 +5,7 @@ config := absolute_path('config')
 build := absolute_path('.build')
 out := absolute_path('firmware')
 draw := absolute_path('draw')
-gauntlet_module := absolute_path('local-modules/gauntlet-behaviors')
+gauntlet_module := absolute_path('modules-local/gauntlet-behaviors')
 
 # parse combos.dtsi and adjust settings to not run out of slots
 # _parse_combos:

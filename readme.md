@@ -164,8 +164,8 @@ The `test` recipe runs native ZMK module tests from a test folder that contains
 Examples:
 
 ```bash
-just test zmk-adaptive-key/tests/basic
-just test zmk-tri-state/tests/swapper --verbose
+just test modules/zmk/adaptive-key/tests/basic
+just test modules/zmk/tri-state/tests/swapper --verbose
 ```
 
 ## Cleanup / Recovery Commands

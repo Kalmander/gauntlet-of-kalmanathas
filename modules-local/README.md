@@ -10,11 +10,11 @@ Why this exists:
 What changed relative to urob's build setup:
 - Upstream modules are still brought in through `config/west.yml` as before.
 - ZMK's app build expects local extra modules through `-DZMK_EXTRA_MODULES=...`, and then forwards that into Zephyr's module loader.
-- This repo now injects `local-modules/gauntlet-behaviors` via `-DZMK_EXTRA_MODULES=...` in the `Justfile` build commands.
+- This repo now injects `modules-local/gauntlet-behaviors` via `-DZMK_EXTRA_MODULES=...` in the `Justfile` build commands.
 - `config/` is back to being config/keymap focused instead of pretending to be a Zephyr module.
 
 If you build manually instead of using `just`, include:
-- `-DZMK_EXTRA_MODULES=/absolute/path/to/local-modules/gauntlet-behaviors`
+- `-DZMK_EXTRA_MODULES=/absolute/path/to/modules-local/gauntlet-behaviors`
 
 Current local module:
 - `gauntlet-behaviors`: local copies of auto-layer and tri-state with repo-specific options.

@@ -17,26 +17,24 @@ manifest:
       import: app/west.yml
     - name: zmk-auto-layer
       remote: urob
-      revision: v0.3.0
-      # revision: v0.2.1
+      revision: b31aa0a357343535a56d535edd0c2ad64d3d7230
+      path: modules/zmk/auto-layer
     - name: zmk-adaptive-key
       remote: urob
-      # revision: v0.2.1
-      # revision: v0.3.0
-      # Pinned past v0.3.0 to include adaptive-key fixes from main
-      # (notably dead-key roll handling and global last-key state).
-      revision: 18cc2795a64ccb394d1a7b7d591a5bfe3f25924b
+      revision: 01ccc22889714f276c930dc960a989f80c9e0680
+      path: modules/zmk/adaptive-key
     - name: zmk-tri-state
       remote: urob
-      # revision: v0.2.1
-      revision: v0.3.0
+      revision: 9b7e1ac25f6dc733f62989fd064c6c5927e5e469
+      path: modules/zmk/tri-state
     - name: zmk-helpers
       remote: urob
-      # revision: v0.2.1
-      revision: v0.3.0
+      revision: b1548efd28d2cc64b9506654e6883695c258190f
+      path: modules/zmk/helpers
     - name: zmk-unicode
       remote: urob
-      revision: v0.3 # set to same as ZMK version above
+      revision: 3e8ca744e5c3b6f430b3713f3e45b806ce89be7b
+      path: modules/zmk/unicode
 
   self:
     path: config
