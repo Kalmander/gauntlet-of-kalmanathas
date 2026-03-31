@@ -8,4 +8,8 @@ config GAUNTLET_BEHAVIOR_TRI_STATE_LOCAL
     bool "Gauntlet tri-state local behavior"
     default y
 
+config GAUNTLET_STRICT_COMBOS
+    bool "Gauntlet strict combos listener"
+    default y
+
 endmenu

@@ -1,4 +1,44 @@
 / {
+	/* Warning: do not define the same key-positions in both zmk,combos and
+	 * gauntlet,strict-combos. The listeners are independent, so duplicate pairs
+	 * across both containers are ambiguous and can misfire.
+	 */
+	strict_combos {
+		compatible = "gauntlet,strict-combos";
+
+		strict_combo_numplusleft {
+			timeout-ms = <20>;
+			require-overlap-ms = <10>;
+			key-positions = <LM2 LM3>;
+			bindings = <&num_plus_or_perma>;
+			layers = <BASE BASE_DOT NAV_WORD NAV_WORD_GUI NAV_WORD_ALT NAV_WORD_SHIFT NAV_WORD_CTRL NAV_WORD_SHIFT_CTRL NAV_WORD_SHIFT_GUI NAV_WORD_CTRL_GUI VIM_WORD PAGE_WORD NUM_WORD NUM_WORD_MODDED NEXUS NEXUS_LOCK PULSE PULSE_LOCK TRICODER TAB_OVERLAY BACKSPACER ICE>;
+		};
+
+		strict_combo_numplusright {
+			timeout-ms = <20>;
+			require-overlap-ms = <10>;
+			key-positions = <RM2 RM3>;
+			bindings = <&num_plus_or_perma>;
+			layers = <BASE BASE_DOT NAV_WORD NAV_WORD_GUI NAV_WORD_ALT NAV_WORD_SHIFT NAV_WORD_CTRL NAV_WORD_SHIFT_CTRL NAV_WORD_SHIFT_GUI NAV_WORD_CTRL_GUI VIM_WORD PAGE_WORD NUM_WORD NUM_WORD_MODDED NEXUS NEXUS_LOCK PULSE PULSE_LOCK TRICODER TAB_OVERLAY BACKSPACER ICE>;
+		};
+
+		strict_combo_numpermaleft {
+			timeout-ms = <20>;
+			require-overlap-ms = <10>;
+			key-positions = <LM2 LM3>;
+			bindings = <&nums_perma>;
+			layers = <NUM_WORD_PLUS>;
+		};
+
+		strict_combo_numpermaright {
+			timeout-ms = <20>;
+			require-overlap-ms = <10>;
+			key-positions = <RM2 RM3>;
+			bindings = <&nums_perma>;
+			layers = <NUM_WORD_PLUS>;
+		};
+	};
+
 	macros {
 		combo_spacec_macro: combo_spacec_macro {
 			compatible = "zmk,behavior-mod-morph";
@@ -406,34 +446,6 @@
 		#define COMBO_TIMEOUT_3 35
 		#define COMBO_TIMEOUT 50
     
-		combo_numplusleft {
-			timeout-ms = <COMBO_TIMEOUT_2>;
-			key-positions = <LM2 LM3>;
-			bindings = <&num_plus_or_perma>;
-			layers = <BASE BASE_DOT NAV_WORD NAV_WORD_GUI NAV_WORD_ALT NAV_WORD_SHIFT NAV_WORD_CTRL NAV_WORD_SHIFT_CTRL NAV_WORD_SHIFT_GUI NAV_WORD_CTRL_GUI VIM_WORD PAGE_WORD NUM_WORD NUM_WORD_MODDED NEXUS NEXUS_LOCK PULSE PULSE_LOCK TRICODER TAB_OVERLAY BACKSPACER ICE>; 
-		};
-
-		combo_numplusright {
-			timeout-ms = <COMBO_TIMEOUT_2>;
-			key-positions = <RM2 RM3>;
-			bindings = <&num_plus_or_perma>;
-			layers = <BASE BASE_DOT NAV_WORD NAV_WORD_GUI NAV_WORD_ALT NAV_WORD_SHIFT NAV_WORD_CTRL NAV_WORD_SHIFT_CTRL NAV_WORD_SHIFT_GUI NAV_WORD_CTRL_GUI VIM_WORD PAGE_WORD NUM_WORD NUM_WORD_MODDED NEXUS NEXUS_LOCK PULSE PULSE_LOCK TRICODER TAB_OVERLAY BACKSPACER ICE>; 
-		};
-
-		combo_numpermaleft {
-			timeout-ms = <COMBO_TIMEOUT_2>;
-			key-positions = <LM2 LM3>;
-			bindings = <&nums_perma>;
-			layers = <NUM_WORD_PLUS>; 
-		};
-
-		combo_numpermaright {
-			timeout-ms = <COMBO_TIMEOUT_2>;
-			key-positions = <RM2 RM3>;
-			bindings = <&nums_perma>;
-			layers = <NUM_WORD_PLUS>; 
-		};
-
 		combo_esc {
 			timeout-ms = <COMBO_TIMEOUT_3>;
 			key-positions = <RM1 RB1>;
