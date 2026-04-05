@@ -2,6 +2,7 @@ Local modules live here when this repo needs firmware code that should not be pa
 
 Why this exists:
 - We added a custom two-shot num layer flow that needed an auto-layer variant with a max keypress limit.
+- We also needed a sticky-layer variant plus an explicit cancel helper, so repo-specific `NEXUS` one-shots can be consumed cleanly by `Enter` flows without flattening the whole layer stack.
 - We also needed a tri-state variant that can ignore release-only rollovers, because the upstream behavior interrupted on both presses and releases and that caused repo-specific `Enter -> Base` fallthrough in fast `Nexus` rolls.
 - We also needed a stricter combo path for the num-layer home-row chords because stock combo timing was good in general but could still rare-misfire on fast same-hand rolls like `th`.
 - The upstream `zmk-auto-layer` checkout is vendored from urob and should stay clean so pulling future upstream updates stays simple.
@@ -19,7 +20,7 @@ If you build manually instead of using `just`, include:
 - `-DZMK_EXTRA_MODULES=/absolute/path/to/modules-local/gauntlet-behaviors`
 
 Current local module:
-- `gauntlet-behaviors`: local copies/extensions for auto-layer, tri-state, and strict combos.
+- `gauntlet-behaviors`: local copies/extensions for auto-layer, sticky-layer, tri-state, and strict combos.
 
 ## Strict Combos
 

@@ -322,7 +322,7 @@
 			#binding-cells = <0>;
 			wait-ms = <0>;
 			tap-ms = <0>;
-			bindings = <&to NAV_WORD>, <&to BASE>, <&sl NEXUS>;
+			bindings = <&to NAV_WORD>, <&to BASE>, <&sll NEXUS>;
 		};
 
 		/* bsk_symbol_sk: bsk_symbol_sk { */

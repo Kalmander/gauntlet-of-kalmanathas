@@ -4,6 +4,10 @@ config GAUNTLET_BEHAVIOR_AUTO_LAYER_LOCAL
     bool "Gauntlet auto-layer local behavior"
     default y
 
+config GAUNTLET_BEHAVIOR_STICKY_LAYER_LOCAL
+    bool "Gauntlet sticky-layer local behavior"
+    default y
+
 config GAUNTLET_BEHAVIOR_TRI_STATE_LOCAL
     bool "Gauntlet tri-state local behavior"
     default y

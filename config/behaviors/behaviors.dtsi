@@ -15,14 +15,22 @@
 / {
 	behaviors {
 		
-		ski: sticky_key_ignoremods {
-			compatible = "zmk,behavior-sticky-key";
-			#binding-cells = <1>;
-			bindings = <&sk>;
-			release-after-ms = <2000>;
-      quick-release;
-			/delete-property/ ignore-modifiers;
-		};
+			ski: sticky_key_ignoremods {
+				compatible = "zmk,behavior-sticky-key";
+				#binding-cells = <1>;
+				bindings = <&sk>;
+				release-after-ms = <2000>;
+	      quick-release;
+				/delete-property/ ignore-modifiers;
+			};
+
+			sll: sticky_layer_local {
+				compatible = "zmk,behavior-sticky-layer-local";
+				#binding-cells = <1>;
+				bindings = <&mo>;
+				release-after-ms = <1000>;
+	      quick-release;
+			};
     
     // eeeh virkaði ekki
 		/* sln: sl_norelease { */
@@ -282,17 +290,17 @@
 			bindings = <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>, <&macro_param_2to1>, <&sl MACRO_PLACEHOLDER>;
 		};
 
-    kpn: kp_then_nexus_sl {
-			compatible = "zmk,behavior-macro-one-param";
-			#binding-cells = <1>;
-			wait-ms = <0>;
-			tap-ms = <0>;
-			bindings = <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>, <&sl NEXUS>;
-      /* bindings =  */
-      /*        <&to BASE>            // Ensure clean slate */
-      /*        ,<&macro_param_1to1> */
-      /*        , <&kp MACRO_PLACEHOLDER> */
-              /* , <&macro_wait_time 10> // Let the old layers die */ 
+	    kpn: kp_then_nexus_sl {
+				compatible = "zmk,behavior-macro-one-param";
+				#binding-cells = <1>;
+				wait-ms = <0>;
+				tap-ms = <0>;
+				bindings = <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>, <&sll NEXUS>;
+	      /* bindings =  */
+	      /*        <&to BASE>            // Ensure clean slate */
+	      /*        ,<&macro_param_1to1> */
+	      /*        , <&kp MACRO_PLACEHOLDER> */
+	              /* , <&macro_wait_time 10> // Let the old layers die */
       /*        , <&sl NEXUS>;          // Add the new layer */
     };
 

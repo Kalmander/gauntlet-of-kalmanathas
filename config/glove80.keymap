@@ -65,7 +65,7 @@
 			&cd_word        &cbd_word      &smart_q   &minuser   &kp LS(ENTER)  &key_repeat                                                                                           &key_repeat    &kp UNDER    &kp V          &kp Z        &kp K_CANCEL   &kp ENTER
 			&kp TAB         &kp K_CANCEL  &kp Y      &kp O      &kp U          &shift_repeat                                                                                         &rshift_repeat &kp F        &kp D          &lorshift    &kp RA(T)      &kp C_PLAY_PAUSE
 			&ae_dot         &kp W         &kp I      &kp E      &kp A          &pulse                                                                                                &thorn_eth     &kp H        &kp T          &kp N        &kp P          &kp X
-			&kp SQT         &ice_slmo ICE_HOLD ICE  &dotter    &sl NEXUS  &kp COMMA      &backspace     &kp UNDER    &kp K_CANCEL  &sl FUNCTIONS   &kp ESC   &kp K_CANCEL    &kp CAPS    &kp M          &kp S        &kp G          &kp B        &kp J          &dqt_l
+			&kp SQT         &ice_slmo ICE_HOLD ICE  &dotter    &sll NEXUS  &kp COMMA      &backspace     &kp UNDER    &kp K_CANCEL  &sl FUNCTIONS   &kp ESC   &kp K_CANCEL    &kp CAPS    &kp M          &kp S        &kp G          &kp B        &kp J          &dqt_l
       &magic MAGIC 0  &kp HOME      &cdeleter  &kp LEFT   &kp RIGHT                     &kp SPACE    &kp C         &sl NUM_WORD    &sl NUM_WORD  &kp K           &kp R                        &kp DOWN     &kp UP         &deleter     &kp END        &kp PSCRN
 			
       >;
@@ -78,7 +78,7 @@
 			&kpdot RA(T)     &kpdot RA(D)  &kpdot Q    &kp MINUS   &kp LS(ENTER)  &key_repeat                                                                                   &key_repeat    &kp UNDER  &kpdot V  &kpdot Z  &kp K_CANCEL  &sk LC(LSHIFT)
 			&sk LC(LSHIFT)   &cancel_dot   &kpdot Y    &kpdot O    &kpdot U   &shift_repeat                                                                                 &rshift_repeat &kpdot F   &kpdot D  &kpdot L  &kpdot RA(T)  &kp C_PLAY_PAUSE
 			&kpdot RA(P)     &kpdot W      &kpdot I    &kpdot E    &kpdot A   &pulse                                                                                        &kpdot  RA(T)  &kpdot H   &kpdot T  &kpdot N  &kpdot P      &kpdot X
-			&kp SQT          &ice_slmo ICE_HOLD ICE  &kp DOT     &sl NEXUS   &kp COMMA  &backspace    &kp UNDER  &kp K_CANCEL  &sl FUNCTIONS   &nexus_auto   &kp K_CANCEL  &sk RCTRL  &kpdot M       &kpdot S   &kpdot G  &kpdot B  &kpdot J      &kpdot L
+			&kp SQT          &ice_slmo ICE_HOLD ICE  &kp DOT     &sll NEXUS   &kp COMMA  &backspace    &kp UNDER  &kp K_CANCEL  &sl FUNCTIONS   &nexus_auto   &kp K_CANCEL  &sk RCTRL  &kpdot M       &kpdot S   &kpdot G  &kpdot B  &kpdot J      &kpdot L
       &magic MAGIC 0   &kp HOME      &cdeleter   &kp LEFT    &kp RIGHT                &kp SPACE  &kpdot C      &sl NUM_WORD    &sl NUM_WORD  &kpdot K      &kpdot R                  &kp DOWN   &kp UP    &deleter  &kp END       &kp PSCRN
 			
       >;
@@ -236,7 +236,7 @@
 			&trans   &trans     &degsign   &kp MINUS  &kp LS(ENTER)  &kpcb LS(G)                                                                  &kpcb LS(G)  &underbase &kp CARET  &kp DOLLAR &to BASE  &none 
 			&trans   &to BASE   &kp FSLH   &kp N1     &kp BSLH   &to BASE                                                                         &kp STAR     &kp PLUS   &kp N0     &kp EQUAL  &trans    &trans 
 			&num_adapt  &minusbase &kp N2     &kp N3     &kp N4     &bnav                                                                            &spacebase   &kp N7     &kp N8     &kp N9     &semi     &trans
-			&kp SQT  &kp PRCNT  &_dot      &sl NEXUS  &_comma    &kp BACKSPACE   &kp UNDER   &to BASE &none       &none      &to BASE  &kp ENTER  &to BASE     &kp LT     &kp GT     &kp HASH   &kp EQUAL &kp DQT 
+			&kp SQT  &kp PRCNT  &_dot      &sll NEXUS  &_comma    &kp BACKSPACE   &kp UNDER   &to BASE &none       &none      &to BASE  &kp ENTER  &to BASE     &kp LT     &kp GT     &kp HASH   &kp EQUAL &kp DQT
 			&none    &kp HOME   &none      &kp LEFT   &kp RIGHT                  &spacebase  &kp N5   &kp SPACE   &kp SPACE  &kp N6   &kp COLON                &downbase  &upbase    &kp AT     &kp END   &none 
 			
 			>;
@@ -249,7 +249,7 @@
 			&trans   &trans     &degsign   &kp MINUS  &kp LS(ENTER)  &kpcb LS(G)                                                                  &kpcb LS(G)  &underbase  &kp CARET  &kp DOLLAR &to BASE  &none 
 			&trans   &to BASE   &kp FSLH   &kp N1     &kp BSLH   &to BASE                                                                         &kp STAR     &kp PLUS   &kp N0     &kp EQUAL  &trans    &trans 
 			&num_adapt   &minusbase &kp N2     &kp N3     &kp N4     &bnav                                                                            &kp SPACE    &kp N7     &kp N8     &kp N9     &kp SEMI  &trans
-			&kp SQT  &kp PRCNT  &_dot      &sl NEXUS  &_comma    &kp BACKSPACE   &kp UNDER  &to BASE &none       &none      &to BASE  &kp ENTER   &to BASE     &kp LT     &kp GT     &kp HASH   &kp EQUAL &kp DQT 
+			&kp SQT  &kp PRCNT  &_dot      &sll NEXUS  &_comma    &kp BACKSPACE   &kp UNDER  &to BASE &none       &none      &to BASE  &kp ENTER   &to BASE     &kp LT     &kp GT     &kp HASH   &kp EQUAL &kp DQT
 			&none    &kp HOME   &none      &kp LEFT   &kp RIGHT                  &kp SPACE  &kp N5   &kp SPACE   &kp SPACE  &kp N6   &kp COLON                &downbase  &upbase    &kp AT     &kp END   &none 
 			
 			>;
@@ -262,7 +262,7 @@
 			&trans   &trans      &degsign   &kp MINUS   &kp LS(ENTER) &kpcb LS(G)                                                                  &kpcb LS(G)  &underbase &kp CARET   &kp DOLLAR &to BASE   &none 
 			&trans   &to BASE    &kp FSLH   &kpcb N1    &kp BSLH  &to BASE                                                                         &kp STAR     &kp PLUS   &kpcb N0    &kp EQUAL  &trans     &trans 
 			&trans   &minusbase  &kpcb N2   &kpcb N3    &kpcb N4  &bnav                                                                            &kp SPACE    &kpcb N7   &kpcb N8    &kpcb N9   &kp SEMI   &none
-			&kp SQT  &kp PRCNT   &_dot      &sl NEXUS   &_comma   &kp BACKSPACE   &kp UNDER   &to BASE &none       &none      &to BASE  &kp ENTER  &to BASE     &kp LT     &kp GT      &kp HASH   &kp EQUAL   &kp DQT 
+			&kp SQT  &kp PRCNT   &_dot      &sll NEXUS   &_comma   &kp BACKSPACE   &kp UNDER   &to BASE &none       &none      &to BASE  &kp ENTER  &to BASE     &kp LT     &kp GT      &kp HASH   &kp EQUAL   &kp DQT
 			&none    &nsk LCTRL  &nsk LALT  &nsk LSHIFT &nsk LGUI                 &spacebase  &kpcb N5 &kp SPACE   &kp SPACE  &kpcb N6  &kp COLON               &nsk RGUI  &nsk RSHIFT &nsk LALT  &nsk LCTRL &kp AT 
 			
 			>;
@@ -275,7 +275,7 @@
 			&trans   &trans   &trans    &nav_guishctrl     &kp LS(ENTER) &trans                                                                         &trans   &kp EXCL   &caret      &doller   &trans  &trans
 			&trans   &trans   &nav_guish &nav_gui &pulse_auto  &trans                                                                         &star    &plus      &slash      &equal    &trans  &trans
 			&vim     &capvim  &att      &sk LCTRL   &nav_shift    &trans                                                                         &trans   &trans     &trans      &trans    &qu     &grave
-			&nav_alt &percent &pag      &sl NEXUS  &enters       &ctrl_w  &trans &nav_ctrlshift_macro &trans    &trans      &trans    &cbd_word  &bslash  &less      &greater    &hash     &trans  &trans
+			&nav_alt &percent &pag      &sll NEXUS  &enters_from_nexus       &ctrl_w  &trans &nav_ctrlshift_macro &trans    &trans      &trans    &cbd_word  &bslash  &less      &greater    &hash     &trans  &trans
 			&trans   &trans   &trans    &trans     &trans                &nav_guictrl &nav_ctrl &bnums_perma   &bnums_perma &coolword &colon             &ctrl_tab  &sctrl_tab  &trans    &trans  &trans
 		
 			>;
@@ -288,7 +288,7 @@
 			&trans  &trans   &trans      &trans     &kp LS(ENTER) &trans                                                                           &trans    &trans    &tilder   &slashbase  &trans   &trans
 			&trans  &trans   &trans      &trans     &trans    &trans                                                                               &kp LBKT  &kp RBKT  &kp LBRC  &kp RBRC  &trans   &trans
 			&trans  &ctrl_w  &kp LS(RIGHT) &trans   &sticky_w &bpulse                                                                              &amp      &kp LPAR  &kp RPAR  &semi     &kp SEMI &grave
-			&trans  &numnex  &nexus_auto &sl NEXUS  &enters   &tabber  &kp UNDER  &trans     &trans         &trans       &trans     &cd_word       &mouse    &qmark    &exclaim  &pipe     &trans   &trans
+			&trans  &numnex  &nexus_auto &sll NEXUS  &enters_from_nexus   &tabber  &kp UNDER  &trans     &trans         &trans       &trans     &cd_word       &mouse    &qmark    &exclaim  &pipe     &trans   &trans
 			&trans  &trans   &trans      &trans     &trans             &kp SPACE  &sk LCTRL  &bnums_perma   &bnums_perma  &kp INSERT  &sl FUNCTIONS          &gui_tab  &sgui_tab &trans    &trans   &trans
 
 			>;
@@ -301,7 +301,7 @@
 			&trans         &trans    &trans    &kp MINUS   &kp LS(ENTER)  &trans                                                                              &trans       &kp EXCL   &kp CARET  &kp DOLLAR  &trans     &kp RC(RSHIFT)
 			&sk LC(LSHIFT) &trans    &sk LC(LSHIFT) &trans &kp BSLH   &cancel_tristate                                                                    &kp STAR     &kp PLUS   &kp FSLH   &kp EQUAL   &trans     &trans
 			&trans         &trans    &kp AT    &kp SPACE   &kp COMMA  &bpulse                                                                             &kp AMPS     &kp LPAR   &kp RPAR   &kp SEMI    &bnums_perma &kp GRAVE
-			&trans         &kp PRCNT &kp DOT   &sl NEXUS   &enters    &kp BACKSPACE  &trans &nav_ctrlshift_macro &trans  &trans       &trans    &trans    &cancel_tristate &kp LT     &kp GT     &kp HASH    &kp EQUAL  &trans
+			&trans         &kp PRCNT &kp DOT   &sll NEXUS   &enters_from_nexus    &kp BACKSPACE  &trans &nav_ctrlshift_macro &trans  &trans       &trans    &trans    &cancel_tristate &kp LT     &kp GT     &kp HASH    &kp EQUAL  &trans
 			&trans         &trans    &sk LGUI  &leftbase   &rightbase                &kp SPACE &sk LCTRL    &bnums_perma &bnums_perma &coolword &kp COLON              &kp DOWN   &kp UP     &trans      &trans     &trans
 		
 			>;
@@ -316,7 +316,7 @@
 			&trans  &trans     &trans    &trans     &kp LS(ENTER)  &trans                                                                          &kp TAB   &trans     &kp TILDE  &slashbase &trans   &trans
 			&trans  &trans     &trans    &trans     &kp BSLH   &cancel_tristate                                                                    &kp LBKT  &kp RBKT   &kp LBRC   &kp RBRC   &trans &trans
 			&trans  &trans     &kp U     &kp SPACE  &kp COMMA  &bpulse                                                                             &kp AMPS  &kp LPAR   &kp RPAR   &kp SEMI   &kp SEMI &kp GRAVE
-			&trans  &kp AT     &kp DOT   &sl NEXUS  &enters    &kp BACKSPACE  &kp UNDER  &trans     &trans        &trans       &trans     &trans   &cancel_tristate  &kp QMARK  &kp EXCL   &kp PIPE   &trans   &trans
+			&trans  &kp AT     &kp DOT   &sll NEXUS  &enters_from_nexus    &kp BACKSPACE  &kp UNDER  &trans     &trans        &trans       &trans     &trans   &cancel_tristate  &kp QMARK  &kp EXCL   &kp PIPE   &trans   &trans
 			&trans  &trans     &trans    &leftbase  &rightbase               &kp SPACE  &sk LCTRL  &bnums_perma   &bnums_perma &coolword  &kp COLON          &kp DOWN   &kp UP     &trans     &trans   &trans
 			
 			>;

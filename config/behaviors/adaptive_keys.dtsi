@@ -328,7 +328,7 @@
 			compatible = "zmk,behavior-adaptive-key";
 			#binding-cells = <0>;
 			bindings = <&kp K_CANCEL>;
-			ak_knexus { trigger-keys = <K>; max-prior-idle-ms = <800>; bindings = <&sl NEXUS>; };
+			ak_knexus { trigger-keys = <K>; max-prior-idle-ms = <800>; bindings = <&sll NEXUS>; };
 		};
 
 		aunav: navword_or_au {

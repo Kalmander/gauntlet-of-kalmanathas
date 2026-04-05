@@ -141,12 +141,75 @@
 			bindings = <&gui_enters>, <&guishift_enters>;
 			mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
-		enters: enters {
-			compatible = "zmk,behavior-mod-morph";
-			#binding-cells = <0>;
-			bindings = <&ns_enters>, <&gui_or_shift_enters>;
-			mods = <(MOD_LGUI|MOD_RGUI)>;
-		};
+			enters: enters {
+				compatible = "zmk,behavior-mod-morph";
+				#binding-cells = <0>;
+				bindings = <&ns_enters>, <&gui_or_shift_enters>;
+				mods = <(MOD_LGUI|MOD_RGUI)>;
+			};
+			enters_normal_from_nexus: enter_stick_from_nexus {
+					compatible = "zmk,behavior-tri-state-local";
+					#binding-cells = <0>;
+					bindings = <&to TRICODER>, <&kp ENTER>, <&tog_off_layer TRICODER>;
+					ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
+					ignored-layers = <TRICODER>;
+	        ignore-release-interrupts;
+	        refresh-on-allowed-keypress;
+	        cancel-sticky-layer-on-interrupt = <NEXUS>;
+	        timeout-ms = <2000>;
+			};
+	    /* Ath, þetta er frekar bjánaleg lausn til að láta sticky shift virka með enter (handa inni mods virka augljóslega enn) */
+			shift_enters_from_nexus: shift_enter_stick_from_nexus {
+					compatible = "zmk,behavior-tri-state-local";
+					#binding-cells = <0>;
+					bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&tog_off_layer TRICODER>;
+					ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
+					ignored-layers = <TRICODER>;
+	        ignore-release-interrupts;
+	        refresh-on-allowed-keypress;
+	        cancel-sticky-layer-on-interrupt = <NEXUS>;
+	        timeout-ms = <2000>;
+			};
+			gui_enters_from_nexus: gui_enter_stick_from_nexus {
+					compatible = "zmk,behavior-tri-state-local";
+					#binding-cells = <0>;
+					bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&tog_off_layer TRICODER>;
+					ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
+					ignored-layers = <TRICODER>;
+	        ignore-release-interrupts;
+	        refresh-on-allowed-keypress;
+	        cancel-sticky-layer-on-interrupt = <NEXUS>;
+	        timeout-ms = <2000>;
+			};
+			guishift_enters_from_nexus: guishift_enter_stick_from_nexus {
+					compatible = "zmk,behavior-tri-state-local";
+					#binding-cells = <0>;
+					bindings = <&to TRICODER>, <&kp LG(LS(ENTER))>, <&tog_off_layer TRICODER>;
+					ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
+					ignored-layers = <TRICODER>;
+	        ignore-release-interrupts;
+	        refresh-on-allowed-keypress;
+	        cancel-sticky-layer-on-interrupt = <NEXUS>;
+	        timeout-ms = <2000>;
+			};
+			ns_enters_from_nexus: normal_shift_enters_from_nexus {
+				compatible = "zmk,behavior-mod-morph";
+				#binding-cells = <0>;
+				bindings = <&enters_normal_from_nexus>, <&shift_enters_from_nexus>;
+				mods = <(MOD_LSFT|MOD_RSFT)>;
+			};
+			gui_or_shift_enters_from_nexus: gui_or_shift_enters_from_nexus {
+				compatible = "zmk,behavior-mod-morph";
+				#binding-cells = <0>;
+				bindings = <&gui_enters_from_nexus>, <&guishift_enters_from_nexus>;
+				mods = <(MOD_LSFT|MOD_RSFT)>;
+			};
+			enters_from_nexus: enters_from_nexus {
+				compatible = "zmk,behavior-mod-morph";
+				#binding-cells = <0>;
+				bindings = <&ns_enters_from_nexus>, <&gui_or_shift_enters_from_nexus>;
+				mods = <(MOD_LGUI|MOD_RGUI)>;
+			};
 		senterer: shift_enterer {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;

@@ -1,0 +1,21 @@
+# Local sticky-layer copy for Gauntlet-specific cancel helpers.
+
+description: Sticky layer behavior with explicit local cancel support
+
+compatible: "zmk,behavior-sticky-layer-local"
+
+include: one_param.yaml
+
+properties:
+  bindings:
+    type: phandles
+    required: true
+  release-after-ms:
+    type: int
+    required: true
+  quick-release:
+    type: boolean
+  lazy:
+    type: boolean
+  ignore-modifiers:
+    type: boolean

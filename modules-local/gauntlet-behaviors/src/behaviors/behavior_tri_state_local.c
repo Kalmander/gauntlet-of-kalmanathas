@@ -22,6 +22,8 @@
 #include <zmk/events/layer_state_changed.h>
 #include <zmk/hid.h>
 
+#include "sticky_layer_local.h"
+
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #define ZMK_BHV_MAX_ACTIVE_TRI_STATES_LOCAL 10
@@ -37,6 +39,7 @@ struct behavior_tri_state_local_config {
     int tap_ms;
     bool ignore_release_interrupts;
     bool refresh_on_allowed_keypress;
+    int32_t cancel_sticky_layer_on_interrupt;
     uint8_t ignored_key_positions[];
 };
 
@@ -279,6 +282,10 @@ static int tri_state_local_position_state_changed_listener(const zmk_event_t *eh
             if (tri_state->config->ignore_release_interrupts && !ev->state) {
                 continue;
             }
+            if (ev->state && tri_state->config->cancel_sticky_layer_on_interrupt >= 0) {
+                gauntlet_sticky_layer_local_cancel(
+                    tri_state->config->cancel_sticky_layer_on_interrupt, ev->timestamp);
+            }
             LOG_DBG("Tri-State interrupted, ending at %d %d", tri_state->position, ev->position);
             tri_state->is_active = false;
             struct zmk_behavior_binding_event event = {
@@ -369,6 +376,7 @@ static int tri_state_local_layer_state_changed_listener(const zmk_event_t *eh) {
         .tap_ms = DT_INST_PROP(n, tap_ms),                                                         \
         .ignore_release_interrupts = DT_INST_PROP(n, ignore_release_interrupts),                   \
         .refresh_on_allowed_keypress = DT_INST_PROP(n, refresh_on_allowed_keypress),               \
+        .cancel_sticky_layer_on_interrupt = DT_INST_PROP(n, cancel_sticky_layer_on_interrupt),     \
         .start_behavior = _TRANSFORM_ENTRY(0, n),                                                  \
         .continue_behavior = _TRANSFORM_ENTRY(1, n),                                               \
         .end_behavior = _TRANSFORM_ENTRY(2, n)};                                                   \
