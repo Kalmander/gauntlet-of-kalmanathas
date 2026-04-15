@@ -201,6 +201,41 @@
 			keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
 		};
 
+		thorn_eth_repeat: thorn_eth_repeat {
+			compatible = "zmk,behavior-adaptive-key";
+			#binding-cells = <0>;
+			bindings = <&thorn_eth>;
+			repeat {
+				trigger-keys = <DOT>;
+				bindings = <&key_repeat>;
+				max-prior-idle-ms = <1000>;
+				strict-modifiers;
+			};
+		};
+
+		/* These are the two former post-Enter Tricoder tabs, moved onto the
+		 * corresponding base keys so Enter no longer needs to preserve Tricoder.
+		 */
+		cdeleter_enter_tab: cdeleter_enter_tab {
+			compatible = "zmk,behavior-adaptive-key";
+			#binding-cells = <0>;
+			bindings = <&cdeleter>;
+			ak_enter_tab { trigger-keys = <ENTER>; max-prior-idle-ms = <2000>; bindings = <&kp TAB>; };
+			ak_senter_tab { trigger-keys = <LS(ENTER)>; max-prior-idle-ms = <2000>; bindings = <&kp TAB>; };
+			ak_genter_tab { trigger-keys = <LG(ENTER)>; max-prior-idle-ms = <2000>; bindings = <&kp TAB>; };
+			ak_gsenter_tab { trigger-keys = <LG(LS(ENTER))>; max-prior-idle-ms = <2000>; bindings = <&kp TAB>; };
+		};
+
+		deleter_enter_tab: deleter_enter_tab {
+			compatible = "zmk,behavior-adaptive-key";
+			#binding-cells = <0>;
+			bindings = <&deleter>;
+			ak_enter_tab { trigger-keys = <ENTER>; max-prior-idle-ms = <2000>; bindings = <&kp TAB>; };
+			ak_senter_tab { trigger-keys = <LS(ENTER)>; max-prior-idle-ms = <2000>; bindings = <&kp TAB>; };
+			ak_genter_tab { trigger-keys = <LG(ENTER)>; max-prior-idle-ms = <2000>; bindings = <&kp TAB>; };
+			ak_gsenter_tab { trigger-keys = <LG(LS(ENTER))>; max-prior-idle-ms = <2000>; bindings = <&kp TAB>; };
+		};
+
 		lh_repeat: lh_repeat {
 			compatible = "zmk,behavior-adaptive-key";
 			#binding-cells = <0>;

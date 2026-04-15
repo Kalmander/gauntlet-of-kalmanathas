@@ -91,7 +91,7 @@
 		enters_normal: enter_stick {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp ENTER>, <&tog_off_layer TRICODER>;
+				bindings = <&to TRICODER>, <&kp ENTER>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -102,7 +102,7 @@
 		shift_enters: shift_enter_stick {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&tog_off_layer TRICODER>;
+				bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -112,7 +112,7 @@
 		gui_enters: gui_enter_stick {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&tog_off_layer TRICODER>;
+				bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -122,7 +122,7 @@
 		guishift_enters: guishift_enter_stick {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp LG(LS(ENTER))>, <&tog_off_layer TRICODER>;
+				bindings = <&to TRICODER>, <&kp LG(LS(ENTER))>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -147,68 +147,6 @@
 				bindings = <&ns_enters>, <&gui_or_shift_enters>;
 				mods = <(MOD_LGUI|MOD_RGUI)>;
 			};
-			/* Cancel transient Nexus state before entering transparent Tricoder,
-			 * otherwise the first post-Enter key can still resolve on Nexus.
-			 */
-			enters_normal_from_nexus: enter_stick_from_nexus {
-					compatible = "zmk,behavior-tri-state-local";
-					#binding-cells = <0>;
-					bindings = <&cto TRICODER>, <&kp ENTER>, <&to BASE>;
-					ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
-					ignored-layers = <TRICODER>;
-	        ignore-release-interrupts;
-	        refresh-on-allowed-keypress;
-	        timeout-ms = <2000>;
-			};
-	    /* Ath, þetta er frekar bjánaleg lausn til að láta sticky shift virka með enter (handa inni mods virka augljóslega enn) */
-			shift_enters_from_nexus: shift_enter_stick_from_nexus {
-					compatible = "zmk,behavior-tri-state-local";
-					#binding-cells = <0>;
-					bindings = <&cto TRICODER>, <&kp LS(ENTER)>, <&to BASE>;
-					ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
-					ignored-layers = <TRICODER>;
-	        ignore-release-interrupts;
-	        refresh-on-allowed-keypress;
-	        timeout-ms = <2000>;
-			};
-			gui_enters_from_nexus: gui_enter_stick_from_nexus {
-					compatible = "zmk,behavior-tri-state-local";
-					#binding-cells = <0>;
-					bindings = <&cto TRICODER>, <&kp LG(ENTER)>, <&to BASE>;
-					ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
-					ignored-layers = <TRICODER>;
-	        ignore-release-interrupts;
-	        refresh-on-allowed-keypress;
-	        timeout-ms = <2000>;
-			};
-			guishift_enters_from_nexus: guishift_enter_stick_from_nexus {
-					compatible = "zmk,behavior-tri-state-local";
-					#binding-cells = <0>;
-					bindings = <&cto TRICODER>, <&kp LG(LS(ENTER))>, <&to BASE>;
-					ignored-key-positions = <_NEXUS _ENTER _RSHIFT _CDELETER _DELETER>;
-					ignored-layers = <TRICODER>;
-	        ignore-release-interrupts;
-	        refresh-on-allowed-keypress;
-	        timeout-ms = <2000>;
-			};
-			ns_enters_from_nexus: normal_shift_enters_from_nexus {
-				compatible = "zmk,behavior-mod-morph";
-				#binding-cells = <0>;
-				bindings = <&enters_normal_from_nexus>, <&shift_enters_from_nexus>;
-				mods = <(MOD_LSFT|MOD_RSFT)>;
-			};
-			gui_or_shift_enters_from_nexus: gui_or_shift_enters_from_nexus {
-				compatible = "zmk,behavior-mod-morph";
-				#binding-cells = <0>;
-				bindings = <&gui_enters_from_nexus>, <&guishift_enters_from_nexus>;
-				mods = <(MOD_LSFT|MOD_RSFT)>;
-			};
-			enters_from_nexus: enters_from_nexus {
-				compatible = "zmk,behavior-mod-morph";
-				#binding-cells = <0>;
-				bindings = <&ns_enters_from_nexus>, <&gui_or_shift_enters_from_nexus>;
-				mods = <(MOD_LGUI|MOD_RGUI)>;
-			};
 		senterer: shift_enterer {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
@@ -221,7 +159,7 @@
 		enters_normal2: enter_stick2 {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp ENTER>, <&tog_off_layer TRICODER>;
+				bindings = <&to TRICODER>, <&kp ENTER>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER LM2 _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -232,7 +170,7 @@
 		shift_enters2: shift_enter_stick2 {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&tog_off_layer TRICODER>;
+				bindings = <&to TRICODER>, <&kp LS(ENTER)>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER LM2 _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -242,7 +180,7 @@
 		gui_enters2: gui_enter_stick2 {
 				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
-				bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&tog_off_layer TRICODER>;
+				bindings = <&to TRICODER>, <&kp LG(ENTER)>, <&to BASE>;
 				ignored-key-positions = <_NEXUS _ENTER LM2 _CDELETER _DELETER>;
 				ignored-layers = <TRICODER>;
         ignore-release-interrupts;
@@ -495,19 +433,6 @@
 				bindings = <&to TRICODER>, <&kp DQT>, <&to BASE>;
 				ignored-key-positions = <_KEYREPEAT _NUMLEFT _NUMRIGHT>;
 				ignored-layers = <TRICODER>;
-        timeout-ms = <2000>;
-		};
-
-		dotter: dotter {
-				compatible = "zmk,behavior-tri-state-local";
-				#binding-cells = <0>;
-				bindings = <&to BACKSPACER>, <&kp DOT>, <&to BASE>;
-				/* Let the Backspacer LB3/LB2 path resolve on Backspacer first.
-				 * Otherwise dotter can end early and reinterpret LB3 on BASE.
-				 */
-				ignored-key-positions = <_NEXUS _ENTER _KEYREPEAT>;
-				ignored-layers = <BACKSPACER TRICODER>;
-        ignore-release-interrupts;
         timeout-ms = <2000>;
 		};
 
