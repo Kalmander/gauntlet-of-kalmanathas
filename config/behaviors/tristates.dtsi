@@ -499,11 +499,15 @@
 		};
 
 		dotter: dotter {
-				compatible = "zmk,behavior-tri-state";
+				compatible = "zmk,behavior-tri-state-local";
 				#binding-cells = <0>;
 				bindings = <&to BACKSPACER>, <&kp DOT>, <&to BASE>;
-				ignored-key-positions = <_KEYREPEAT>;
-				ignored-layers = <BACKSPACER>;
+				/* Let the Backspacer LB3/LB2 path resolve on Backspacer first.
+				 * Otherwise dotter can end early and reinterpret LB3 on BASE.
+				 */
+				ignored-key-positions = <_NEXUS _ENTER _KEYREPEAT>;
+				ignored-layers = <BACKSPACER TRICODER>;
+        ignore-release-interrupts;
         timeout-ms = <2000>;
 		};
 
