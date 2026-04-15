@@ -56,10 +56,24 @@ struct active_sticky_layer_local {
     struct k_work_delayable release_timer;
     uint8_t modified_key_usage_page;
     uint32_t modified_key_keycode;
+    bool had_other_position_pressed_on_press;
 };
 
 static struct active_sticky_layer_local
     active_sticky_layers_local[ZMK_BHV_STICKY_LAYER_LOCAL_MAX_HELD] = {};
+static bool pressed_positions[ZMK_KEYMAP_LEN] = {};
+
+static bool had_other_position_pressed(uint32_t self_position) {
+    for (int i = 0; i < ZMK_KEYMAP_LEN; i++) {
+        if ((uint32_t)i == self_position) {
+            continue;
+        }
+        if (pressed_positions[i]) {
+            return true;
+        }
+    }
+    return false;
+}
 
 static struct active_sticky_layer_local *
 store_sticky_layer_local(struct zmk_behavior_binding_event *event, uint32_t param1,
@@ -81,6 +95,7 @@ store_sticky_layer_local(struct zmk_behavior_binding_event *event, uint32_t para
         sticky_layer->timer_started = false;
         sticky_layer->modified_key_usage_page = 0;
         sticky_layer->modified_key_keycode = 0;
+        sticky_layer->had_other_position_pressed_on_press = false;
         return sticky_layer;
     }
     return NULL;
@@ -189,6 +204,7 @@ static int on_sticky_layer_local_binding_pressed(struct zmk_behavior_binding *bi
     }
 
     LOG_DBG("%d new local sticky layer", event.position);
+    sticky_layer->had_other_position_pressed_on_press = had_other_position_pressed(event.position);
     if (!sticky_layer->config->lazy) {
         press_sticky_layer_local_behavior(sticky_layer, event.timestamp);
     }
@@ -211,6 +227,11 @@ static int on_sticky_layer_local_binding_released(struct zmk_behavior_binding *b
         return release_sticky_layer_local_behavior(sticky_layer, event.timestamp);
     }
 
+    if (sticky_layer->had_other_position_pressed_on_press) {
+        LOG_DBG("Another key was already held when the local sticky layer was pressed.");
+        return release_sticky_layer_local_behavior(sticky_layer, event.timestamp);
+    }
+
     sticky_layer->timer_started = true;
     sticky_layer->release_at = event.timestamp + sticky_layer->config->release_after_ms;
     int32_t ms_left = sticky_layer->release_at - k_uptime_get();
@@ -225,10 +246,26 @@ static const struct behavior_driver_api behavior_sticky_layer_local_driver_api =
     .binding_released = on_sticky_layer_local_binding_released,
 };
 
+static int sticky_layer_local_position_state_changed_listener(const zmk_event_t *eh);
 static int sticky_layer_local_keycode_state_changed_listener(const zmk_event_t *eh);
 
+ZMK_LISTENER(behavior_sticky_layer_local_positions, sticky_layer_local_position_state_changed_listener);
+ZMK_SUBSCRIPTION(behavior_sticky_layer_local_positions, zmk_position_state_changed);
 ZMK_LISTENER(behavior_sticky_layer_local, sticky_layer_local_keycode_state_changed_listener);
 ZMK_SUBSCRIPTION(behavior_sticky_layer_local, zmk_keycode_state_changed);
+
+static int sticky_layer_local_position_state_changed_listener(const zmk_event_t *eh) {
+    struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
+    if (ev == NULL) {
+        return ZMK_EV_EVENT_BUBBLE;
+    }
+
+    if (ev->position < ZMK_KEYMAP_LEN) {
+        pressed_positions[ev->position] = ev->state;
+    }
+
+    return ZMK_EV_EVENT_BUBBLE;
+}
 
 static int sticky_layer_local_keycode_state_changed_listener(const zmk_event_t *eh) {
     struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
