@@ -3,6 +3,7 @@ Local modules live here when this repo needs firmware code that should not be pa
 Why this exists:
 - We added a custom two-shot num layer flow that needed an auto-layer variant with a max keypress limit.
 - We also needed a sticky-layer variant plus an explicit cancel helper, so repo-specific `NEXUS` one-shots can be consumed cleanly by `Enter` flows without flattening the whole layer stack.
+- That same local sticky-layer variant now also treats chorded use as momentary: if another key is already held when the sticky-layer key is pressed, releasing it will not leave the layer latched on. This is specifically to make sloppy `NEXUS -> ENTER` rolls resolve cleanly back to `BASE`.
 - We also needed a tri-state variant that can ignore release-only rollovers, because the upstream behavior interrupted on both presses and releases and that caused repo-specific `Enter -> Base` fallthrough in fast `Nexus` rolls.
 - We also needed a stricter combo path for the num-layer home-row chords because stock combo timing was good in general but could still rare-misfire on fast same-hand rolls like `th`.
 - The upstream `zmk-auto-layer` checkout is vendored from urob and should stay clean so pulling future upstream updates stays simple.
@@ -21,6 +22,23 @@ If you build manually instead of using `just`, include:
 
 Current local module:
 - `gauntlet-behaviors`: local copies/extensions for auto-layer, sticky-layer, tri-state, and strict combos.
+
+## Sticky Layer Local
+
+`gauntlet-behaviors` contains a local sticky-layer behavior used as `&sll`.
+
+Why we made it:
+- The original reason was explicit local cancel support, so repo-owned behaviors could consume one-shot `NEXUS` state directly.
+- The current behavior also has one repo-specific semantic difference from upstream `&sl`: chorded presses are treated as momentary instead of sticky.
+
+What it does beyond upstream `&sl`:
+- Exposes a local cancel helper for repo-owned behavior code.
+- Tracks whether another key position was already down when the sticky-layer key was pressed.
+- If so, releasing that sticky-layer key releases the layer immediately instead of starting the sticky timeout.
+
+Current use in this repo:
+- `&sll NEXUS` is used on the NEXUS thumb paths and a few helper macros/adaptive keys.
+- The overlap-aware release rule is there to keep fast or sloppy `LB3 -> LB2` Enter rolls from leaving `NEXUS` latched on.
 
 ## Strict Combos
 

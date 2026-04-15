@@ -1,7 +1,8 @@
 /*
- * Local sticky-layer copy for Gauntlet-specific cancel helpers.
- * This lets repo-owned behaviors explicitly consume one-shot NEXUS state
- * without patching upstream ZMK sticky-key code.
+ * Local sticky-layer copy for Gauntlet-specific cancel helpers and overlap-aware
+ * release behavior. This lets repo-owned behaviors explicitly consume one-shot
+ * NEXUS state without patching upstream ZMK sticky-key code, and avoids
+ * latching the layer after chorded/rolled uses of the NEXUS thumb key.
  *
  * Original work Copyright (c) 2020 The ZMK Contributors
  *
@@ -63,6 +64,9 @@ static struct active_sticky_layer_local
     active_sticky_layers_local[ZMK_BHV_STICKY_LAYER_LOCAL_MAX_HELD] = {};
 static bool pressed_positions[ZMK_KEYMAP_LEN] = {};
 
+/* Treat chorded use as momentary: if another key is already down when the sticky
+ * layer key is pressed, releasing it should not leave the layer latched on.
+ */
 static bool had_other_position_pressed(uint32_t self_position) {
     for (int i = 0; i < ZMK_KEYMAP_LEN; i++) {
         if ((uint32_t)i == self_position) {
