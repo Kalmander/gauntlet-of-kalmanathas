@@ -31,7 +31,3 @@ properties:
   refresh-on-allowed-keypress:
     type: boolean
     description: Extend the timeout when the tri-state key or another ignored key is pressed.
-  cancel-sticky-layer-on-interrupt:
-    type: int
-    default: -1
-    description: Cancel this local sticky layer when a non-ignored key press interrupts the tri-state.
