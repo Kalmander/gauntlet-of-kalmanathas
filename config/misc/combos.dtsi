@@ -1,29 +1,8 @@
 / {
-	/* Warning: do not define the same key-positions in more than one combo
-	 * listener container. zmk,combos, gauntlet,strict-combos, and
-	 * gauntlet,ordered-combos are independent listeners, so duplicate pairs
-	 * across them are ambiguous and can misfire.
+	/* Warning: do not define the same key-positions in both zmk,combos and
+	 * gauntlet,strict-combos. The listeners are independent, so duplicate pairs
+	 * across both containers are ambiguous and can misfire.
 	 */
-	ordered_combos {
-		compatible = "gauntlet,ordered-combos";
-
-		ordered_combo_nexus_enter {
-			timeout-ms = <75>;
-			key-positions = <LB3 LB2>;
-			/* Hard fallback for sloppy NEXUS->ENTER rolls, but only in that order. */
-			bindings = <&enterer>;
-			layers = <BASE BASE_DOT NAV_WORD NAV_WORD_GUI NAV_WORD_ALT NAV_WORD_SHIFT NAV_WORD_CTRL NAV_WORD_SHIFT_CTRL NAV_WORD_SHIFT_GUI NAV_WORD_CTRL_GUI VIM_WORD PAGE_WORD NUM_WORD NUM_WORD_PLUS NUM_WORD_PERMA NUM_WORD_MODDED NEXUS NEXUS_LOCK PULSE PULSE_LOCK TRICODER TAB_OVERLAY BACKSPACER ICE>;
-		};
-
-		ordered_combo_enter_nexus {
-			timeout-ms = <20>;
-			key-positions = <LB2 LB3>;
-			/* Reverse order still works, but only on a much tighter roll window. */
-			bindings = <&enterer>;
-			layers = <BASE BASE_DOT NAV_WORD NAV_WORD_GUI NAV_WORD_ALT NAV_WORD_SHIFT NAV_WORD_CTRL NAV_WORD_SHIFT_CTRL NAV_WORD_SHIFT_GUI NAV_WORD_CTRL_GUI VIM_WORD PAGE_WORD NUM_WORD NUM_WORD_PLUS NUM_WORD_PERMA NUM_WORD_MODDED NEXUS NEXUS_LOCK PULSE PULSE_LOCK TRICODER TAB_OVERLAY BACKSPACER ICE>;
-		};
-	};
-
 	strict_combos {
 		compatible = "gauntlet,strict-combos";
 
@@ -510,6 +489,14 @@
 			key-positions = <LM2 LB2>;
 			bindings = <&enterer>;
 			layers = <BASE BASE_DOT NAV_WORD NAV_WORD_GUI NAV_WORD_ALT NAV_WORD_SHIFT NAV_WORD_CTRL NAV_WORD_SHIFT_CTRL NAV_WORD_SHIFT_GUI NAV_WORD_CTRL_GUI VIM_WORD PAGE_WORD NUM_WORD NUM_WORD_PLUS NUM_WORD_PERMA NUM_WORD_MODDED NEXUS NEXUS_LOCK PULSE PULSE_LOCK TRICODER TAB_OVERLAY BACKSPACER ICE>; 
+		};
+
+		combo_nexus_enter {
+			timeout-ms = <75>;
+			key-positions = <LB3 LB2>;
+			/* Hard fallback for sloppy NEXUS->ENTER rolls: emit Enter and exit cleanly. */
+			bindings = <&enterer>;
+			layers = <BASE BASE_DOT NAV_WORD NAV_WORD_GUI NAV_WORD_ALT NAV_WORD_SHIFT NAV_WORD_CTRL NAV_WORD_SHIFT_CTRL NAV_WORD_SHIFT_GUI NAV_WORD_CTRL_GUI VIM_WORD PAGE_WORD NUM_WORD NUM_WORD_PLUS NUM_WORD_PERMA NUM_WORD_MODDED NEXUS NEXUS_LOCK PULSE PULSE_LOCK TRICODER TAB_OVERLAY BACKSPACER ICE>;
 		};
 
 		combo_i {

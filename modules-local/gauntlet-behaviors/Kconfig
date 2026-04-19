@@ -16,8 +16,4 @@ config GAUNTLET_STRICT_COMBOS
     bool "Gauntlet strict combos listener"
     default y
 
-config GAUNTLET_ORDERED_COMBOS
-    bool "Gauntlet ordered combos listener"
-    default y
-
 endmenu

@@ -8,7 +8,7 @@ Why this exists:
 - We also needed a stricter combo path for the num-layer home-row chords because stock combo timing was good in general but could still rare-misfire on fast same-hand rolls like `th`.
 - The upstream `zmk-auto-layer` checkout is vendored from urob and should stay clean so pulling future upstream updates stays simple.
 - The same rule applies to `zmk-tri-state`: if we need repo-specific behavior or experiments, they live here instead of turning upstream modules into patch piles.
-- The same rule now applies to strict and ordered combos: the repo owns the special-case combo behavior here instead of carrying a patch in upstream `zmk/app/src/combo.c`.
+- The same rule now applies to strict combos: the repo owns the special-case combo behavior here instead of carrying a patch in upstream `zmk/app/src/combo.c`.
 - Keeping our custom behavior in a local module makes the ownership boundary explicit: upstream modules stay upstream, repo-specific firmware code stays here.
 
 What changed relative to urob's build setup:
@@ -21,7 +21,7 @@ If you build manually instead of using `just`, include:
 - `-DZMK_EXTRA_MODULES=/absolute/path/to/modules-local/gauntlet-behaviors`
 
 Current local module:
-- `gauntlet-behaviors`: local copies/extensions for auto-layer, sticky-layer, tri-state, strict combos, and ordered combos.
+- `gauntlet-behaviors`: local copies/extensions for auto-layer, sticky-layer, tri-state, and strict combos.
 
 ## Sticky Layer Local
 
@@ -68,24 +68,3 @@ Current use in this repo:
 Important ownership rule:
 - Do not define the same `key-positions` pair in both `zmk,combos` and `gauntlet,strict-combos`.
 - The listeners are independent, so duplicated pairs across both containers are ambiguous and can misfire.
-
-## Ordered Combos
-
-`gauntlet-behaviors` also contains a local `gauntlet,ordered-combos` listener.
-
-Why we made it:
-- We wanted some roll-style helpers to care about press order instead of treating both directions as the same combo.
-- The first use case is the `LB3 -> LB2` Enter fallback: that direction should stay forgiving for sloppy `NEXUS -> ENTER` rolls, but the reverse `LB2 -> LB3` direction should not get the same leniency.
-- Keeping it repo-local keeps the semantics explicit and avoids patching vendored ZMK combo code.
-
-What it does:
-- It behaves like a combo listener whose `key-positions` order is significant.
-- The first key must be pressed first, the second key second, and so on, within the normal `timeout-ms` window.
-- If the press order diverges before the combo completes, the combo is cancelled and the original key events fall through.
-
-Current use in this repo:
-- `LB3 -> LB2` is now an ordered Enter fallback with a `75 ms` timeout.
-
-Important ownership rule:
-- Do not define the same `key-positions` pair in more than one combo listener container.
-- `zmk,combos`, `gauntlet,strict-combos`, and `gauntlet,ordered-combos` are independent listeners, so duplicated pairs across them are ambiguous and can misfire.
