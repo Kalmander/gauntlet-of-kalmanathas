@@ -500,7 +500,7 @@
 		};
 
 		combo_nexus_dot_enter {
-			timeout-ms = <100>;
+			timeout-ms = <75>;
 			key-positions = <LB4 LB3 LB2>;
 			/* Hard fallback for sloppy DOT NEXUS->ENTER rolls: emit Enter and exit cleanly. */
 			bindings = <&combo_dotenter_macro>;
