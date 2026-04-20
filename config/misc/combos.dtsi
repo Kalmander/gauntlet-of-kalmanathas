@@ -201,6 +201,14 @@
 			bindings = <&kp N5 &spacebase>;
 		};
 
+		combo_dotenter_macro: combo_dotenter_macro {
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			wait-ms = <0>;
+			tap-ms = <0>;
+			bindings = <&kp DOT>, <&enterer>;
+		};
+
 		dqt_shift: dqt_shift {
 			compatible = "zmk,behavior-macro";
 			#binding-cells = <0>;
@@ -489,6 +497,14 @@
 			key-positions = <LM2 LB2>;
 			bindings = <&enterer>;
 			layers = <BASE BASE_DOT NAV_WORD NAV_WORD_GUI NAV_WORD_ALT NAV_WORD_SHIFT NAV_WORD_CTRL NAV_WORD_SHIFT_CTRL NAV_WORD_SHIFT_GUI NAV_WORD_CTRL_GUI VIM_WORD PAGE_WORD NUM_WORD NUM_WORD_PLUS NUM_WORD_PERMA NUM_WORD_MODDED NEXUS NEXUS_LOCK PULSE PULSE_LOCK TRICODER TAB_OVERLAY BACKSPACER ICE>; 
+		};
+
+		combo_nexus_dot_enter {
+			timeout-ms = <100>;
+			key-positions = <LB4 LB3 LB2>;
+			/* Hard fallback for sloppy DOT NEXUS->ENTER rolls: emit Enter and exit cleanly. */
+			bindings = <&combo_dotenter_macro>;
+			layers = <BASE BASE_DOT NAV_WORD NAV_WORD_GUI NAV_WORD_ALT NAV_WORD_SHIFT NAV_WORD_CTRL NAV_WORD_SHIFT_CTRL NAV_WORD_SHIFT_GUI NAV_WORD_CTRL_GUI VIM_WORD PAGE_WORD NUM_WORD NUM_WORD_PLUS NUM_WORD_PERMA NUM_WORD_MODDED NEXUS NEXUS_LOCK PULSE PULSE_LOCK TRICODER TAB_OVERLAY BACKSPACER ICE>;
 		};
 
 		combo_nexus_enter {
