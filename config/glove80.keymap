@@ -65,7 +65,7 @@
 			&cd_word        &cbd_word      &smart_q   &minuser   &kp LS(ENTER)  &key_repeat                                                                                           &key_repeat    &kp UNDER    &kp V          &kp Z        &kp K_CANCEL   &kp ENTER
 			&kp TAB         &kp K_CANCEL  &kp Y      &kp O      &kp U          &shift_repeat                                                                                         &rshift_repeat &kp F        &kp D          &lorshift    &kp RA(T)      &kp C_PLAY_PAUSE
 			&ae_dot         &kp W         &kp I      &kp E      &kp A          &pulse                                                                                                &thorn_eth_repeat &kp H        &kp T          &kp N        &kp P          &kp X
-			&kp SQT         &ice_slmo ICE_HOLD ICE  &_dot    &sll NEXUS  &kp COMMA      &backspace     &kp UNDER    &kp K_CANCEL  &sl FUNCTIONS   &kp ESC   &kp K_CANCEL    &kp CAPS    &kp M          &kp S        &kp G          &kp B        &kp J          &dqt_l
+			&kp SQT         &ice_slmo ICE_HOLD ICE  &_dot    &sll NEXUS  &kp COMMA      &backspace     &kp UNDER    &kp K_CANCEL  &sl FUNCTIONS   &kp ESC   &kp K_CANCEL    &kp CAPS    &kp M          &kp S        &kp G          &kp B        &kp J          &kp DQT
       &magic MAGIC 0  &kp HOME      &cdeleter_enter_tab  &kp LEFT   &kp RIGHT                     &kp SPACE    &kp C         &sl NUM_WORD    &sl NUM_WORD  &kp K           &kp R                        &kp DOWN     &kp UP         &deleter_enter_tab     &kp END        &kp PSCRN
 			
       >;
